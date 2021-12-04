@@ -1,0 +1,39 @@
+/*.........DEFAULT CSS......... */
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.container {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+/*.........COMPONENTS......... */
+@import 'variables';
+
+/*.........COMPONENTS......... */
+@import './components/params-form';
+@import './components/rooms-form';
+@import './components/image-card';
+@import './components/counter';
+
+/*.........PAGES CSS......... */
+@import './pages/params';

@@ -1,0 +1,45 @@
+.params {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .params-heading {
+    margin: 0 0 50px 0;
+
+    text-align: center;
+
+    &__title {
+      margin: 0 0 11px 0;
+
+      font-size: 30px;
+      font-weight: 500;
+      line-height: 34px;
+    }
+
+    &__subtitle {
+      margin: 0;
+    }
+  }
+
+  .params-content {
+    margin: 0 0 50px 0;
+  }
+
+  .params-actions {
+    display: flex;
+    flex-direction: column;
+
+    &__btn {
+      max-width: 320px;
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+
+  .params-actions__btn + .params-actions__btn {
+    margin-top: 10px;
+  }
+}

@@ -1,0 +1,15 @@
+.counter {
+  display: flex;
+  align-items: center;
+
+  &-btn {
+    width: 25px;
+    min-width: 25px !important;
+    height: 25px;
+    padding: 0 !important;
+  }
+
+  &-val {
+    margin: 0 10px 0;
+  }
+}

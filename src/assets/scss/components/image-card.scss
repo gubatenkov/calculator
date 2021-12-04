@@ -1,0 +1,47 @@
+.card {
+  max-width: 500px;
+  margin: 0 auto;
+
+  .card-top {
+    &__preview {
+      margin-bottom: 25px;
+      border-radius: 5px;
+      box-shadow: 0 0 0 2px #fff;
+      cursor: pointer;
+      display: flex;
+    }
+
+    &__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 5px;
+
+      &.active {
+        box-shadow: 0 0 0 2px $border-accent-color;
+      }
+    }
+  }
+
+  .card-body {
+    display: flex;
+    justify-content: space-between;
+
+    &__text {
+      margin: 0 0 8px 0;
+
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 23px;
+    }
+
+    &__subtext {
+      margin: 0;
+
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 18px;
+      color: #aeaeae;
+    }
+  }
+}
