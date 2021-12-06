@@ -9,12 +9,6 @@ const RoomsForm = () => {
   const { addRoom, removeRoom, rooms, updateRoomArea, setCurrentStep } =
     useGlobalContext();
 
-  rooms.sort((a, b) => {
-    if (a.name > b.name) return -1;
-    if (a.name < b.name) return 1;
-    return 0;
-  });
-
   let isAnyRoomSelected = rooms.reduce((acc, el) => {
     return acc + el.items.length;
   }, 0);

@@ -3,51 +3,64 @@ const SET_CURRENT_STEP = 'SET_CURRENT_STEP';
 const ADD_ROOM = 'ADD_ROOM';
 const REMOVE_ROOM = 'REMOVE_ROOM';
 const UPDATE_ROOM_AREA = 'UPDATE_ROOM_AREA';
+const SET_ACTIVE_CEILING = 'SET_ACTIVE_CEILING';
+const SET_ACTIVE_WALL = 'SET_ACTIVE_WALL';
+const SET_ACTIVE_FLOOR = 'SET_ACTIVE_FLOOR';
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case SET_ACTIVE_FLOOR:
+      return {
+        ...state,
+        floors: { ...state.floors, activeItem: action.payload },
+      };
+
+    case SET_ACTIVE_WALL:
+      return {
+        ...state,
+        walls: { ...state.walls, activeItem: action.payload },
+      };
+    case SET_ACTIVE_CEILING:
+      return {
+        ...state,
+        ceilings: { ...state.ceilings, activeItem: action.payload },
+      };
     case UPDATE_ROOM_AREA:
-      const room = state.rooms.find((r) => r.name === action.payload.name);
-      const item = room.items.find((i) => i.id === action.payload.id);
-      item.area = Number(action.payload.area);
+      const roomsWithUpdArea = state.rooms.reduce((acc, el) => {
+        if (el.name === action.payload.name) {
+          el.items.forEach((item) =>
+            item.id === action.payload.id
+              ? (item.area = Number(action.payload.area))
+              : item
+          );
+        }
+        acc.push(el);
+        return acc;
+      }, []);
 
-      return {
-        ...state,
-        rooms: [
-          ...state.rooms.filter((r) => r.name !== action.payload.name),
-          {
-            ...room,
-            items: [
-              ...room.items.filter((i) => i.id !== action.payload.id),
-              item,
-            ],
-          },
-        ],
-      };
+      return { ...state, roomsWithUpdArea };
     case REMOVE_ROOM:
-      const roomRemoveFrom = state.rooms.find((r) => r.name === action.payload);
-      roomRemoveFrom.items.pop();
+      const roomsWithRemoved = state.rooms.reduce((acc, el) => {
+        if (el.name === action.payload) {
+          el.items.pop();
+        }
+        acc.push(el);
+        return acc;
+      }, []);
 
-      return {
-        ...state,
-        rooms: [
-          ...state.rooms.filter((r) => r.name !== action.payload),
-          roomRemoveFrom,
-        ],
-      };
+      return { ...state, roomsWithRemoved };
     case ADD_ROOM:
-      const roomAddTo = state.rooms.find((r) => r.name === action.payload);
-      if (roomAddTo.items.length < roomAddTo.maxItems) {
-        roomAddTo.items.push({ id: Date.now(), area: 0 });
-      }
+      const roomsWithAdded = state.rooms.reduce((acc, el) => {
+        if (el.name === action.payload) {
+          if (el.items.length < el.maxItems) {
+            el.items.push({ id: Date.now(), area: 0 });
+          }
+        }
+        acc.push(el);
+        return acc;
+      }, []);
 
-      return {
-        ...state,
-        rooms: [
-          ...state.rooms.filter((r) => r.name !== action.payload),
-          roomAddTo,
-        ],
-      };
+      return { ...state, roomsWithAdded };
     case SET_CURRENT_STEP:
       return { ...state, currentStep: action.payload };
     case TOGGLE_NEW_WALLS:

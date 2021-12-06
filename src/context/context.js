@@ -1,5 +1,8 @@
 import React, { useReducer, useContext, createContext } from 'react';
 import reducer from './reducer';
+import { ceilings } from 'data/ceils';
+import { walls } from 'data/walls';
+import { floors } from 'data/floors';
 
 const AppContext = createContext();
 
@@ -15,10 +18,34 @@ const initialState = {
     },
     { name: 'Кухня', items: [], maxItems: 1 },
   ],
+  ceilings: {
+    activeItem: 1,
+    items: ceilings,
+  },
+  walls: {
+    activeItem: 1,
+    items: walls,
+  },
+  floors: {
+    activeItem: 1,
+    items: floors,
+  },
 };
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  const setActiveFloor = (activeNum) => {
+    dispatch({ type: 'SET_ACTIVE_FLOOR', payload: activeNum });
+  };
+
+  const setActiveWall = (activeNum) => {
+    dispatch({ type: 'SET_ACTIVE_WALL', payload: activeNum });
+  };
+
+  const setActiveCeiling = (activeNum) => {
+    dispatch({ type: 'SET_ACTIVE_CEILING', payload: activeNum });
+  };
 
   const updateRoomArea = (id, name, area) => {
     dispatch({ type: 'UPDATE_ROOM_AREA', payload: { id, name, area } });
@@ -52,6 +79,9 @@ const AppProvider = ({ children }) => {
         addRoom,
         removeRoom,
         updateRoomArea,
+        setActiveCeiling,
+        setActiveWall,
+        setActiveFloor,
       }}
     >
       {children}
