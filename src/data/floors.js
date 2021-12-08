@@ -11,3 +11,11 @@ export const floors = [
   { label: 'Укладання паркету', img: floor4, variant: 4 },
   { label: 'Укладання плитки', img: floor5, variant: 5 },
 ];
+
+export const toiletFloors = [
+  { label: 'Укладання лінолеуму', img: null, variant: 1 },
+  { label: 'Укладання ламінату', img: null, variant: 2 },
+  { label: 'Укладання вінілової підлоги', img: null, variant: 3 },
+  { label: 'Укладання паркету', img: null, variant: 4 },
+  { label: 'Укладання плитки', img: null, variant: 5 },
+];

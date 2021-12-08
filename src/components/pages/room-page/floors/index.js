@@ -2,25 +2,31 @@ import React from 'react';
 
 import { SelectDropdown } from 'components';
 
-const Floors = ({ activeItem, items, setActive }) => {
+const Floors = ({ activeItem, items, setActive, id }) => {
   return (
     <>
-      {items.map((i, idx) => (
-        <img
-          className={
-            activeItem === i.variant
-              ? 'room-floor__img'
-              : 'room-floor__img hide'
-          }
-          src={i.img || ''}
-          key={idx}
-          alt='ceil'
-        />
-      ))}
+      {items.map((i, idx) => {
+        if (i.img) {
+          return (
+            <img
+              className={
+                activeItem === i.variant
+                  ? 'room-floor__img'
+                  : 'room-floor__img hide'
+              }
+              src={i.img || ''}
+              key={idx}
+              alt='ceil'
+            />
+          );
+        }
+        return null;
+      })}
 
       <SelectDropdown
+        id={id}
         name='Пiдлога'
-        posXinPerc={80}
+        posXinPerc={50}
         posYinPerc={10}
         items={items}
         value={activeItem}

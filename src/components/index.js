@@ -5,6 +5,7 @@ export { default as FormItemDropdown } from 'components/forms/params-form/FormIt
 export { default as FormItemInput } from 'components/forms/params-form/FormItemInput';
 export { default as ParamsPage } from 'components/pages/params-page';
 export { default as RoomPage } from 'components/pages/room-page';
+export { default as ToiletPage } from 'components/pages/toilet-page';
 export { default as ImageCard } from 'components/image-card';
 export { default as Ceilings } from 'components/pages/room-page/ceilings';
 export { default as Walls } from 'components/pages/room-page/walls';

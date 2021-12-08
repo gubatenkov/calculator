@@ -7,3 +7,9 @@ export const walls = [
   { label: 'Стіни під фарбування', img: wall2, variant: 2 },
   { label: 'Стіни під фарбування з молдінгами', img: wall3, variant: 3 },
 ];
+
+export const toiletWalls = [
+  { label: 'Поклейка шпалер', img: null, variant: 1 },
+  { label: 'Стіни під фарбування', img: null, variant: 2 },
+  { label: 'Стіни під фарбування з молдінгами', img: null, variant: 3 },
+];

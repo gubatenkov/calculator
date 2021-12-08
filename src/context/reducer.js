@@ -3,27 +3,123 @@ const SET_CURRENT_STEP = 'SET_CURRENT_STEP';
 const ADD_ROOM = 'ADD_ROOM';
 const REMOVE_ROOM = 'REMOVE_ROOM';
 const UPDATE_ROOM_AREA = 'UPDATE_ROOM_AREA';
-const SET_ACTIVE_CEILING = 'SET_ACTIVE_CEILING';
-const SET_ACTIVE_WALL = 'SET_ACTIVE_WALL';
-const SET_ACTIVE_FLOOR = 'SET_ACTIVE_FLOOR';
+const SET_ROOM_ACTIVE_CEILING = 'SET_ROOM_ACTIVE_CEILING';
+const SET_ROOM_ACTIVE_WALL = 'SET_ROOM_ACTIVE_WALL';
+const SET_ROOM_ACTIVE_FLOOR = 'SET_ROOM_ACTIVE_FLOOR';
+const SET_TOILET_ACTIVE_CEILING = 'SET_TOILET_ACTIVE_CEILING';
+const SET_TOILET_ACTIVE_WALL = 'SET_TOILET_ACTIVE_WALL';
+const SET_TOILET_ACTIVE_FLOOR = 'SET_TOILET_ACTIVE_FLOOR';
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case SET_ACTIVE_FLOOR:
+    case SET_TOILET_ACTIVE_WALL:
+      const toiletWithUpdCurrWall = state.rooms.reduce((acc, el) => {
+        if (el.name === 'Санвузол') {
+          el.items.forEach((room) => {
+            if (room.id === action.payload.roomId) {
+              room.currentWall = action.payload.activeNum;
+            }
+            return room;
+          });
+        }
+        acc.push(el);
+        return acc;
+      }, []);
+
       return {
         ...state,
-        floors: { ...state.floors, activeItem: action.payload },
+        rooms: toiletWithUpdCurrWall,
+      };
+    case SET_TOILET_ACTIVE_FLOOR:
+      const toiletWithUpdCurrFloor = state.rooms.reduce((acc, el) => {
+        if (el.name === 'Санвузол') {
+          el.items.forEach((room) => {
+            if (room.id === action.payload.roomId) {
+              room.currentFloor = action.payload.activeNum;
+            }
+            return room;
+          });
+        }
+        acc.push(el);
+        return acc;
+      }, []);
+
+      return {
+        ...state,
+        rooms: toiletWithUpdCurrFloor,
+      };
+    case SET_TOILET_ACTIVE_CEILING:
+      const toiletWithUpdCurrCeiling = state.rooms.reduce((acc, el) => {
+        if (el.name === 'Санвузол') {
+          el.items.forEach((room) => {
+            if (room.id === action.payload.roomId) {
+              room.currentCeiling = action.payload.activeNum;
+            }
+            return room;
+          });
+        }
+        acc.push(el);
+        return acc;
+      }, []);
+
+      return {
+        ...state,
+        rooms: toiletWithUpdCurrCeiling,
+      };
+    case SET_ROOM_ACTIVE_FLOOR:
+      const roomsWithUpdCurrFloor = state.rooms.reduce((acc, el) => {
+        if (el.name === 'Кімната') {
+          el.items.forEach((room) => {
+            if (room.id === action.payload.roomId) {
+              room.currentFloor = action.payload.activeNum;
+            }
+            return room;
+          });
+        }
+        acc.push(el);
+        return acc;
+      }, []);
+
+      return {
+        ...state,
+        rooms: roomsWithUpdCurrFloor,
       };
 
-    case SET_ACTIVE_WALL:
+    case SET_ROOM_ACTIVE_WALL:
+      const roomsWithUpdCurrWall = state.rooms.reduce((acc, el) => {
+        if (el.name === 'Кімната') {
+          el.items.forEach((room) => {
+            if (room.id === action.payload.roomId) {
+              room.currentWall = action.payload.activeNum;
+            }
+            return room;
+          });
+        }
+        acc.push(el);
+        return acc;
+      }, []);
+
       return {
         ...state,
-        walls: { ...state.walls, activeItem: action.payload },
+        rooms: roomsWithUpdCurrWall,
       };
-    case SET_ACTIVE_CEILING:
+    case SET_ROOM_ACTIVE_CEILING:
+      const roomsWithUpdCurrCeiling = state.rooms.reduce((acc, el) => {
+        if (el.name === 'Кімната') {
+          el.items.forEach((room) => {
+            if (room.id === action.payload.roomId) {
+              room.currentCeiling = action.payload.activeNum;
+            }
+            return room;
+          });
+        }
+        acc.push(el);
+        return acc;
+      }, []);
+
       return {
         ...state,
-        ceilings: { ...state.ceilings, activeItem: action.payload },
+        rooms: roomsWithUpdCurrCeiling,
       };
     case UPDATE_ROOM_AREA:
       const roomsWithUpdArea = state.rooms.reduce((acc, el) => {
@@ -53,7 +149,13 @@ const reducer = (state, action) => {
       const roomsWithAdded = state.rooms.reduce((acc, el) => {
         if (el.name === action.payload) {
           if (el.items.length < el.maxItems) {
-            el.items.push({ id: Date.now(), area: 0 });
+            el.items.push({
+              id: Date.now(),
+              area: 0,
+              ceilings: 1,
+              walls: 1,
+              floors: 1,
+            });
           }
         }
         acc.push(el);

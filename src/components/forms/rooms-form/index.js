@@ -38,7 +38,7 @@ const RoomsForm = () => {
           variant='outlined'
           color='secondary'
           component={Link}
-          to='/room'
+          to='/room/1'
         >
           Перейти до дизайну &gt;
         </Button>

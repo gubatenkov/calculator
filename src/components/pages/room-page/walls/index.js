@@ -2,21 +2,29 @@ import React from 'react';
 
 import { SelectDropdown } from 'components';
 
-const Walls = ({ activeItem, items, setActive }) => {
+const Walls = ({ activeItem, items, setActive, id }) => {
   return (
     <>
-      {items.map((i, idx) => (
-        <img
-          className={
-            activeItem === i.variant ? 'room-wall__img' : 'room-wall__img hide'
-          }
-          src={i.img || ''}
-          key={idx}
-          alt='wall'
-        />
-      ))}
+      {items.map((i, idx) => {
+        if (i.img) {
+          return (
+            <img
+              className={
+                activeItem === i.variant
+                  ? 'room-wall__img'
+                  : 'room-wall__img hide'
+              }
+              src={i.img || ''}
+              key={idx}
+              alt='wall'
+            />
+          );
+        }
+        return null;
+      })}
 
       <SelectDropdown
+        id={id}
         name='Стiни'
         posXinPerc={75}
         posYinPerc={60}

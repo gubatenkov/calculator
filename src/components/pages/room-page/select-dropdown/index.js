@@ -16,11 +16,12 @@ const SelectDropdown = ({
   posXinPerc,
   posYinPerc,
   onChange,
+  id,
 }) => {
   const [isOpen, setOpen] = useState(false);
   const ref = React.useRef(null);
 
-  const handleChange = (e) => onChange(+e.target.value);
+  const handleChange = (e) => onChange(+id, +e.target.value);
 
   const handleClick = () => setOpen(true);
 
