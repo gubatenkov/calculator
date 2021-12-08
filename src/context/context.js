@@ -54,6 +54,27 @@ const initialState = {
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  const setActiveKitchenWall = (roomId, activeNum) => {
+    dispatch({
+      type: 'SET_KITCHEN_ACTIVE_WALL',
+      payload: { roomId, activeNum },
+    });
+  };
+
+  const setActiveKitchenFloor = (roomId, activeNum) => {
+    dispatch({
+      type: 'SET_KITCHEN_ACTIVE_FLOOR',
+      payload: { roomId, activeNum },
+    });
+  };
+
+  const setActiveKitchenCeiling = (roomId, activeNum) => {
+    dispatch({
+      type: 'SET_KITCHEN_ACTIVE_CEILING',
+      payload: { roomId, activeNum },
+    });
+  };
+
   const setActiveToiletWall = (roomId, activeNum) => {
     dispatch({
       type: 'SET_TOILET_ACTIVE_WALL',
@@ -128,6 +149,9 @@ const AppProvider = ({ children }) => {
         setActiveToiletCeiling,
         setActiveToiletFloor,
         setActiveToiletWall,
+        setActiveKitchenCeiling,
+        setActiveKitchenWall,
+        setActiveKitchenFloor,
       }}
     >
       {children}

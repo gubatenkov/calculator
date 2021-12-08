@@ -9,9 +9,66 @@ const SET_ROOM_ACTIVE_FLOOR = 'SET_ROOM_ACTIVE_FLOOR';
 const SET_TOILET_ACTIVE_CEILING = 'SET_TOILET_ACTIVE_CEILING';
 const SET_TOILET_ACTIVE_WALL = 'SET_TOILET_ACTIVE_WALL';
 const SET_TOILET_ACTIVE_FLOOR = 'SET_TOILET_ACTIVE_FLOOR';
+const SET_KITCHEN_ACTIVE_CEILING = 'SET_KITCHEN_ACTIVE_CEILING';
+const SET_KITCHEN_ACTIVE_FLOOR = 'SET_KITCHEN_ACTIVE_FLOOR';
+const SET_KITCHEN_ACTIVE_WALL = 'SET_KITCHEN_ACTIVE_WALL';
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case SET_KITCHEN_ACTIVE_CEILING:
+      const kitchenWithUpdCurrCeiling = state.rooms.reduce((acc, el) => {
+        if (el.name === 'Кухня') {
+          el.items.forEach((room) => {
+            if (room.id === action.payload.roomId) {
+              room.currentCeiling = action.payload.activeNum;
+            }
+            return room;
+          });
+        }
+        acc.push(el);
+        return acc;
+      }, []);
+
+      return {
+        ...state,
+        rooms: kitchenWithUpdCurrCeiling,
+      };
+    case SET_KITCHEN_ACTIVE_FLOOR:
+      const kitchenWithUpdCurrFloor = state.rooms.reduce((acc, el) => {
+        if (el.name === 'Кухня') {
+          el.items.forEach((room) => {
+            if (room.id === action.payload.roomId) {
+              room.currentFloor = action.payload.activeNum;
+            }
+            return room;
+          });
+        }
+        acc.push(el);
+        return acc;
+      }, []);
+
+      return {
+        ...state,
+        rooms: kitchenWithUpdCurrFloor,
+      };
+    case SET_KITCHEN_ACTIVE_WALL:
+      const kitchenWithUpdCurrWall = state.rooms.reduce((acc, el) => {
+        if (el.name === 'Кухня') {
+          el.items.forEach((room) => {
+            if (room.id === action.payload.roomId) {
+              room.currentWall = action.payload.activeNum;
+            }
+            return room;
+          });
+        }
+        acc.push(el);
+        return acc;
+      }, []);
+
+      return {
+        ...state,
+        rooms: kitchenWithUpdCurrWall,
+      };
     case SET_TOILET_ACTIVE_WALL:
       const toiletWithUpdCurrWall = state.rooms.reduce((acc, el) => {
         if (el.name === 'Санвузол') {
@@ -152,9 +209,9 @@ const reducer = (state, action) => {
             el.items.push({
               id: Date.now(),
               area: 0,
-              ceilings: 1,
-              walls: 1,
-              floors: 1,
+              currentCeiling: 1,
+              currentWall: 1,
+              currentFloor: 1,
             });
           }
         }
