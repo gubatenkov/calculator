@@ -12,9 +12,13 @@ const SET_TOILET_ACTIVE_FLOOR = 'SET_TOILET_ACTIVE_FLOOR';
 const SET_KITCHEN_ACTIVE_CEILING = 'SET_KITCHEN_ACTIVE_CEILING';
 const SET_KITCHEN_ACTIVE_FLOOR = 'SET_KITCHEN_ACTIVE_FLOOR';
 const SET_KITCHEN_ACTIVE_WALL = 'SET_KITCHEN_ACTIVE_WALL';
+const SET_PARAMS_VALUE = 'SET_PARAMS_VALUE';
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case SET_PARAMS_VALUE:
+      const { value, name } = action.payload;
+      return { ...state, params: { ...state.params, [name]: value } };
     case SET_KITCHEN_ACTIVE_CEILING:
       const kitchenWithUpdCurrCeiling = state.rooms.reduce((acc, el) => {
         if (el.name === 'Кухня') {
@@ -221,7 +225,10 @@ const reducer = (state, action) => {
 
       return { ...state, roomsWithAdded };
     case SET_CURRENT_STEP:
-      return { ...state, currentStep: action.payload };
+      return {
+        ...state,
+        params: { ...state.params, currentStep: action.payload },
+      };
     case TOGGLE_NEW_WALLS:
       return { ...state, newWalls: !state.newWalls };
     default:

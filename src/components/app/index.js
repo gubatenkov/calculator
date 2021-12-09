@@ -2,8 +2,15 @@ import React from 'react';
 import 'assets/scss/app.scss';
 import { Routes, Route } from 'react-router-dom';
 
-import { ParamsPage, RoomPage, ToiletPage, KitchenPage } from 'components';
+import {
+  ParamsPage,
+  RoomPage,
+  ToiletPage,
+  KitchenPage,
+  ResultPage,
+} from 'components';
 import { useGlobalContext } from 'context/context';
+import { renderRoutes } from 'utils/functions';
 
 const App = () => {
   const { rooms } = useGlobalContext();
@@ -12,16 +19,6 @@ const App = () => {
   const toiletRooms = rooms.find((r) => r.name === 'Санвузол');
   const kitchenRooms = rooms.find((r) => r.name === 'Кухня');
 
-  const renderRoutes = (items, path, Component) => {
-    if (items.length) {
-      return items.map((i) => (
-        <Route key={i.id} path={path} element={<Component {...i} />} />
-      ));
-    }
-
-    return null;
-  };
-
   return (
     <div className='app'>
       <Routes>
@@ -29,6 +26,7 @@ const App = () => {
         {renderRoutes(leavingRooms.items, '/room/:id', RoomPage)}
         {renderRoutes(toiletRooms.items, '/toilet/:id', ToiletPage)}
         {renderRoutes(kitchenRooms.items, '/kitchen/:id', KitchenPage)}
+        <Route path='/result' element={<ResultPage />} />
       </Routes>
     </div>
   );

@@ -3,11 +3,12 @@
   height: 100vh;
 
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
   .params-heading {
-    margin: 0 0 50px 0;
+    margin: 0 0 35px 0;
 
     text-align: center;
 
@@ -24,6 +25,85 @@
     }
   }
 
+  &-paper {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 550px;
+    padding: 45px 50px;
+  }
+
+  &-form {
+    width: 100%;
+    margin: 0 auto;
+
+    &__title {
+      margin: 0 0 40px 0;
+
+      font-size: 24px;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    &__field {
+      & input {
+        padding: 11px;
+      }
+
+      & label {
+        font-size: 14px;
+        transform: translate(14px, 15px) scale(1);
+      }
+
+      & fieldset {
+        height: 45px;
+      }
+    }
+  }
+
+  &-form__btn {
+    display: block !important;
+    margin: 40px auto 0 !important;
+
+    &.params-form__btn--rightImg {
+      &::after {
+        content: '';
+        display: flex;
+        width: 10px;
+        height: 10px;
+
+        position: absolute;
+        top: 12px;
+        right: 12px;
+
+        background-image: url('../../images/arrow-r.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+
+        transition: 0.3s all ease-in-out;
+      }
+
+      &:hover {
+        &::after {
+          transform: translateX(-95px);
+        }
+      }
+    }
+  }
+
+  .form-item {
+    &__select {
+      height: 40px;
+
+      & > div {
+        padding: 11px;
+      }
+    }
+  }
+
+  .params-form__field + .params-form__field {
+    margin: 20px 0 0 0;
+  }
+
   .params-content {
     margin: 0 0 50px 0;
   }
@@ -36,6 +116,56 @@
       max-width: 320px;
       width: 100%;
       margin: 0 auto;
+
+      &.params-actions__btn--rightImg {
+        &::after {
+          content: '';
+          display: flex;
+          width: 10px;
+          height: 10px;
+
+          position: absolute;
+          top: 12px;
+          right: 12px;
+
+          background-image: url('../../images/arrow-r.svg');
+          background-repeat: no-repeat;
+          background-position: center;
+
+          transition: 0.3s all ease-in-out;
+        }
+
+        &:hover {
+          &::after {
+            transform: translateX(-25px);
+          }
+        }
+      }
+
+      &.params-actions__btn--leftImg {
+        &::after {
+          content: '';
+          display: flex;
+          width: 10px;
+          height: 10px;
+
+          position: absolute;
+          top: 12px;
+          left: 12px;
+
+          background-image: url('../../images/arrow-l.svg');
+          background-repeat: no-repeat;
+          background-position: center;
+
+          transition: 0.3s all ease-in-out;
+        }
+
+        &:hover {
+          &::after {
+            transform: translateX(45px);
+          }
+        }
+      }
     }
   }
 

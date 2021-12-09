@@ -1,23 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { TextField } from '@material-ui/core';
 
-const FormItemInput = ({ className, label, name, handler, defaultValue }) => {
-  const [value, setValue] = useState(defaultValue);
-
-  const handleChange = (e) => {
-    setValue(e.target.value);
-    handler(e);
-  };
+const FormItemInput = ({ className, name, value, onChange, ...rest }) => {
+  const handleChange = (e) => onChange(e.target.value, e.target.name);
 
   return (
-    <TextField
-      className={className}
-      id='form-input'
-      name={name}
-      label={label}
-      value={value}
-      onChange={handleChange}
-    />
+    <div className={className}>
+      <TextField {...rest} name={name} value={value} onChange={handleChange} />
+    </div>
   );
 };
 

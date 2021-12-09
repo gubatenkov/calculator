@@ -26,7 +26,7 @@ code {
   padding: 0 10px;
 }
 
-/*.........COMPONENTS......... */
+/*.........VARIABLES......... */
 @import 'variables';
 
 /*.........COMPONENTS......... */
@@ -34,9 +34,11 @@ code {
 @import './components/rooms-form';
 @import './components/image-card';
 @import './components/counter';
+@import './components/totals-card.scss';
 
 /*.........PAGES CSS......... */
 @import './pages/params';
 @import './pages/room';
 @import './pages/toilet';
 @import './pages/kitchen';
+@import './pages/result';

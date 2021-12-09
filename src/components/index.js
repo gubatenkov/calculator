@@ -1,14 +1,17 @@
 export { default as App } from 'components/app';
 export { default as RoomsForm } from 'components/forms/rooms-form';
 export { default as ParamsForm } from 'components/forms/params-form';
+export { default as ResultForm } from 'components/forms/result-form';
 export { default as FormItemDropdown } from 'components/forms/params-form/FormItemDropdown';
 export { default as FormItemInput } from 'components/forms/params-form/FormItemInput';
 export { default as ParamsPage } from 'components/pages/params-page';
 export { default as RoomPage } from 'components/pages/room-page';
 export { default as ToiletPage } from 'components/pages/toilet-page';
 export { default as KitchenPage } from 'components/pages/kitchen-page';
+export { default as ResultPage } from 'components/pages/result-page';
 export { default as ImageCard } from 'components/image-card';
 export { default as Ceilings } from 'components/pages/room-page/ceilings';
 export { default as Walls } from 'components/pages/room-page/walls';
 export { default as Floors } from 'components/pages/room-page/floors';
 export { default as SelectDropdown } from 'components/pages/room-page/select-dropdown';
+export { default as TotalsCard } from 'components/totals-card';

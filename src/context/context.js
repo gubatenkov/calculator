@@ -4,7 +4,13 @@ import reducer from './reducer';
 const AppContext = createContext();
 
 const initialState = {
-  currentStep: 1,
+  params: {
+    currentStep: 1,
+    region: 1,
+    city: 'Київ',
+    objectStatus: 1,
+    ceilingHeight: 1,
+  },
   newWalls: true,
   rooms: [
     {
@@ -134,6 +140,10 @@ const AppProvider = ({ children }) => {
     dispatch({ type: 'SET_CURRENT_STEP', payload: step });
   };
 
+  const handleChange = (value, name) => {
+    dispatch({ type: 'SET_PARAMS_VALUE', payload: { value, name } });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -152,6 +162,7 @@ const AppProvider = ({ children }) => {
         setActiveKitchenCeiling,
         setActiveKitchenWall,
         setActiveKitchenFloor,
+        handleChange,
       }}
     >
       {children}

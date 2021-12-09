@@ -9,6 +9,31 @@
     max-width: 250px;
 
     display: flex !important;
+
+    &.rooms-form__btn--leftImg {
+      &::after {
+        content: '';
+        display: flex;
+        width: 10px;
+        height: 10px;
+
+        position: absolute;
+        top: 12px;
+        left: 12px;
+
+        background-image: url('../../images/arrow-l.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+
+        transition: 0.3s all ease-in-out;
+      }
+
+      &:hover {
+        &::after {
+          transform: translateX(10px);
+        }
+      }
+    }
   }
 
   .rooms-form__btn + .rooms-form__btn {
@@ -21,10 +46,9 @@
     &-title {
       margin: 0 0 20px 0;
 
-      font-style: normal;
-      font-weight: 700;
-      font-size: 45px;
-      line-height: 58px;
+      font-size: 30px;
+      font-weight: 500;
+      line-height: 34px;
       color: $main-font-color;
       text-align: center;
     }
@@ -82,6 +106,10 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+
+      & + .rooms-form__item-right {
+        margin: 6px 0 0 0;
+      }
     }
 
     &-name {

@@ -6,8 +6,12 @@ import { cards } from 'data/imageCardsData';
 import { useGlobalContext } from 'context/context';
 
 const ParamsPage = () => {
-  const { newWalls, toggleNewWalls, currentStep, setCurrentStep } =
-    useGlobalContext();
+  const {
+    newWalls,
+    toggleNewWalls,
+    params: { currentStep },
+    setCurrentStep,
+  } = useGlobalContext();
 
   if (currentStep === 1) {
     return (
@@ -55,20 +59,20 @@ const ParamsPage = () => {
             </Grid>
             <div className='params-actions'>
               <Button
-                className='params-actions__btn'
+                className='params-actions__btn params-actions__btn--rightImg'
                 variant='contained'
                 color='primary'
                 onClick={() => setCurrentStep(3)}
               >
-                Перейти до вибору кімнат &gt;
+                Перейти до вибору кімнат
               </Button>
               <Button
-                className='params-actions__btn'
+                className='params-actions__btn params-actions__btn--leftImg'
                 variant='contained'
                 color='primary'
                 onClick={() => setCurrentStep(1)}
               >
-                &lt; Параметри об'єкту
+                Параметри об'єкту
               </Button>
             </div>
           </div>

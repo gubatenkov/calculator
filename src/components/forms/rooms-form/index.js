@@ -17,7 +17,12 @@ const RoomsForm = () => {
     <form className='rooms-form'>
       <div className='rooms-form__heading'>
         <h1 className='rooms-form__heading-title'>Вибір кімнат</h1>
-        <p className='rooms-form__heading-subtitle'>Загальна площа: 0.00м</p>
+        <p className='rooms-form__heading-subtitle'>
+          Загальна площа: 0.00{' '}
+          <span>
+            м<sup>2</sup>
+          </span>
+        </p>
       </div>
 
       <div className='rooms-form__body'>
@@ -40,17 +45,17 @@ const RoomsForm = () => {
           component={Link}
           to='/room/1'
         >
-          Перейти до дизайну &gt;
+          Перейти до дизайну
         </Button>
       )}
 
       <Button
-        className='rooms-form__btn'
+        className='rooms-form__btn rooms-form__btn--leftImg'
         variant='contained'
         color='primary'
         onClick={() => setCurrentStep(2)}
       >
-        &lt; Стан стін приміщення
+        Стан стін приміщення
       </Button>
     </form>
   );
