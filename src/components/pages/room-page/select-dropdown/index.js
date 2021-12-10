@@ -8,6 +8,7 @@ import {
   Radio,
   RadioGroup,
 } from '@material-ui/core';
+import { useParams } from 'react-router-dom';
 
 const SelectDropdown = ({
   items,
@@ -16,10 +17,10 @@ const SelectDropdown = ({
   posXinPerc,
   posYinPerc,
   onChange,
-  id,
 }) => {
   const [isOpen, setOpen] = useState(false);
   const ref = React.useRef(null);
+  const { id } = useParams();
 
   const handleChange = (e) => onChange(+id, +e.target.value);
 

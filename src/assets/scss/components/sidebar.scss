@@ -1,0 +1,29 @@
+.sidebar {
+  width: 80px;
+  height: 100vh;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  backdrop-filter: blur(7px);
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  border-radius: 0 !important;
+
+  z-index: 100;
+
+  &-btn {
+    font-size: 10px !important;
+    color: #fff !important;
+
+    z-index: 1301;
+  }
+
+  &-submenu {
+  }
+}

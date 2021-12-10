@@ -15,3 +15,4 @@ export { default as Walls } from 'components/pages/room-page/walls';
 export { default as Floors } from 'components/pages/room-page/floors';
 export { default as SelectDropdown } from 'components/pages/room-page/select-dropdown';
 export { default as TotalsCard } from 'components/totals-card';
+export { default as Sidebar } from 'components/sidebar';

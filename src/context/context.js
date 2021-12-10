@@ -17,25 +17,28 @@ const initialState = {
       name: 'Кімната',
       items: [
         {
-          id: 1,
+          id: 380,
           area: 0,
           currentCeiling: 1,
           currentWall: 1,
           currentFloor: 1,
+          path: '/room/380',
         },
         {
-          id: 2,
+          id: 950,
           area: 0,
           currentCeiling: 1,
           currentWall: 1,
           currentFloor: 1,
+          path: '/room/950',
         },
         {
-          id: 3,
+          id: 311,
           area: 0,
           currentCeiling: 1,
           currentWall: 1,
           currentFloor: 1,
+          path: '/room/311',
         },
       ],
       maxItems: 10,
@@ -43,14 +46,28 @@ const initialState = {
     {
       name: 'Санвузол',
       items: [
-        { id: 1, area: 0, currentCeiling: 1, currentWall: 1, currentFloor: 1 },
+        {
+          id: 1,
+          area: 0,
+          currentCeiling: 1,
+          currentWall: 1,
+          currentFloor: 1,
+          path: '/toilet/1',
+        },
       ],
       maxItems: 5,
     },
     {
       name: 'Кухня',
       items: [
-        { id: 1, area: 0, currentCeiling: 1, currentWall: 1, currentFloor: 1 },
+        {
+          id: 1,
+          area: 0,
+          currentCeiling: 1,
+          currentWall: 1,
+          currentFloor: 1,
+          path: '/kitchen/1',
+        },
       ],
       maxItems: 1,
     },

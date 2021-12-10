@@ -6,31 +6,37 @@ import { Ceilings, Walls, Floors } from 'components';
 import { toiletCeilings } from 'data/ceils';
 import { toiletWalls } from 'data/walls';
 import { toiletFloors } from 'data/floors';
+import { useParams } from 'react-router-dom';
 
 const ToiletPage = (props) => {
-  const { setActiveToiletCeiling, setActiveToiletWall, setActiveToiletFloor } =
-    useGlobalContext();
+  const {
+    rooms,
+    setActiveToiletCeiling,
+    setActiveToiletWall,
+    setActiveToiletFloor,
+  } = useGlobalContext();
+
+  const { id } = useParams();
+  const toiletRooms = rooms.find((r) => r.name === 'Санвузол');
+  const currentToilet = toiletRooms.items.filter((i) => i.id === +id)[0];
 
   return (
     <div className='toilet'>
       <div className='toilet-content'>
         <Ceilings
-          id={props.id}
           items={toiletCeilings}
-          activeItem={props.currentCeiling}
+          activeItem={currentToilet.currentCeiling}
           setActive={setActiveToiletCeiling}
         />
 
         <Walls
-          id={props.id}
           items={toiletWalls}
-          activeItem={props.currentWall}
+          activeItem={currentToilet.currentWall}
           setActive={setActiveToiletWall}
         />
         <Floors
-          id={props.id}
           items={toiletFloors}
-          activeItem={props.currentFloor}
+          activeItem={currentToilet.currentFloor}
           setActive={setActiveToiletFloor}
         />
       </div>

@@ -210,13 +210,22 @@ const reducer = (state, action) => {
       const roomsWithAdded = state.rooms.reduce((acc, el) => {
         if (el.name === action.payload) {
           if (el.items.length < el.maxItems) {
-            el.items.push({
+            const room = {
               id: Date.now(),
               area: 0,
               currentCeiling: 1,
               currentWall: 1,
               currentFloor: 1,
-            });
+              // path: `/room/${Date.now()}`,
+            };
+            if (action.payload === 'Кімната') {
+              room.path = `/room/${room.id}`;
+            } else if (action.payload === 'Кухня') {
+              room.path = `/kitchen/${room.id}`;
+            } else {
+              room.path = `/toilet/${room.id}`;
+            }
+            el.items.push(room);
           }
         }
         acc.push(el);

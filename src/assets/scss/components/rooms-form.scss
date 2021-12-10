@@ -77,7 +77,6 @@
 
     &-left {
       flex: auto;
-      margin: 0 6px 0 0;
       padding: 15px 20px;
 
       display: flex;
@@ -96,6 +95,7 @@
 
     &-right {
       min-width: 225px;
+      margin: 0 0 0 6px;
       padding: 7px 20px;
 
       border: 1px solid #e0dfdf;
@@ -108,7 +108,7 @@
       justify-content: space-between;
 
       & + .rooms-form__item-right {
-        margin: 6px 0 0 0;
+        margin: 6px 0 0 6px;
       }
     }
 

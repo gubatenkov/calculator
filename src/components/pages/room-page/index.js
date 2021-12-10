@@ -6,29 +6,30 @@ import { Ceilings, Walls, Floors } from 'components';
 import { ceilings } from 'data/ceils';
 import { walls } from 'data/walls';
 import { floors } from 'data/floors';
+import { useParams } from 'react-router-dom';
 
 const RoomPage = (props) => {
-  const { setActiveCeiling, setActiveWall, setActiveFloor } =
+  const { rooms, setActiveCeiling, setActiveWall, setActiveFloor } =
     useGlobalContext();
+  const { id } = useParams();
+  const leavingRooms = rooms.find((r) => r.name === 'Кімната');
+  const currentRoom = leavingRooms.items.filter((i) => i.id === +id)[0];
 
   return (
     <div className='room'>
       <div className='room-content'>
         <Ceilings
-          id={props.id}
-          activeItem={props.currentCeiling}
+          activeItem={currentRoom.currentCeiling}
           items={ceilings}
           setActive={setActiveCeiling}
         />
         <Walls
-          id={props.id}
-          activeItem={props.currentWall}
+          activeItem={currentRoom.currentWall}
           items={walls}
           setActive={setActiveWall}
         />
         <Floors
-          id={props.id}
-          activeItem={props.currentFloor}
+          activeItem={currentRoom.currentFloor}
           items={floors}
           setActive={setActiveFloor}
         />

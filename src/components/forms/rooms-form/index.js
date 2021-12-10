@@ -9,9 +9,16 @@ const RoomsForm = () => {
   const { addRoom, removeRoom, rooms, updateRoomArea, setCurrentStep } =
     useGlobalContext();
 
-  let isAnyRoomSelected = rooms.reduce((acc, el) => {
-    return acc + el.items.length;
+  const isAnyRoomSelected = rooms.reduce((acc, el) => {
+    return acc + el?.items?.length;
   }, 0);
+
+  const firstRoomPath = rooms.reduce((acc, el) => {
+    if (el?.items?.length > 0) {
+      acc = el.items[0].path;
+    }
+    return acc;
+  }, '');
 
   return (
     <form className='rooms-form'>
@@ -43,7 +50,7 @@ const RoomsForm = () => {
           variant='outlined'
           color='secondary'
           component={Link}
-          to='/room/1'
+          to={firstRoomPath}
         >
           Перейти до дизайну
         </Button>

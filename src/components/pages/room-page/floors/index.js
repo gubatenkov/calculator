@@ -2,7 +2,7 @@ import React from 'react';
 
 import { SelectDropdown } from 'components';
 
-const Floors = ({ activeItem, items, setActive, id }) => {
+const Floors = ({ activeItem, items, setActive }) => {
   return (
     <>
       {items.map((i, idx) => {
@@ -24,7 +24,6 @@ const Floors = ({ activeItem, items, setActive, id }) => {
       })}
 
       <SelectDropdown
-        id={id}
         name='Пiдлога'
         posXinPerc={50}
         posYinPerc={10}

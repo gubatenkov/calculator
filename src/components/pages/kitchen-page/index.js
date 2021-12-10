@@ -6,34 +6,36 @@ import { Ceilings, Walls, Floors } from 'components';
 import { kitchenCeilings } from 'data/ceils';
 import { kitchenWalls } from 'data/walls';
 import { kitchenFloors } from 'data/floors';
+import { useParams } from 'react-router-dom';
 
 const KitchenPage = (props) => {
   const {
+    rooms,
     setActiveKitchenCeiling,
     setActiveKitchenWall,
     setActiveKitchenFloor,
   } = useGlobalContext();
+  const { id } = useParams();
+  const kitchenRooms = rooms.find((r) => r.name === 'Кухня');
+  const currentKitchen = kitchenRooms.items.filter((i) => i.id === +id)[0];
 
   return (
     <div className='kitchen'>
       <div className='kitchen-content'>
         <Ceilings
-          id={props.id}
           items={kitchenCeilings}
-          activeItem={props.currentCeiling}
+          activeItem={currentKitchen.currentCeiling}
           setActive={setActiveKitchenCeiling}
         />
 
         <Walls
-          id={props.id}
           items={kitchenWalls}
-          activeItem={props.currentWall}
+          activeItem={currentKitchen.currentWall}
           setActive={setActiveKitchenWall}
         />
         <Floors
-          id={props.id}
           items={kitchenFloors}
-          activeItem={props.currentFloor}
+          activeItem={currentKitchen.currentFloor}
           setActive={setActiveKitchenFloor}
         />
       </div>
