@@ -13,9 +13,33 @@ const SET_KITCHEN_ACTIVE_CEILING = 'SET_KITCHEN_ACTIVE_CEILING';
 const SET_KITCHEN_ACTIVE_FLOOR = 'SET_KITCHEN_ACTIVE_FLOOR';
 const SET_KITCHEN_ACTIVE_WALL = 'SET_KITCHEN_ACTIVE_WALL';
 const SET_PARAMS_VALUE = 'SET_PARAMS_VALUE';
+const SET_ERROR_INPUTS = 'SET_ERROR_INPUTS';
+const RESET_ERROR_INPUTS = 'RESET_ERROR_INPUTS';
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case RESET_ERROR_INPUTS:
+      const roomsWithResetedErrorInputs = state.rooms.reduce((acc, el) => {
+        if (el?.items?.length) {
+          el.items.forEach((item) => (item.isInputError = false));
+        }
+        acc.push(el);
+        return acc;
+      }, []);
+      return { ...state, rooms: roomsWithResetedErrorInputs };
+    case SET_ERROR_INPUTS:
+      const roomsWithErrorInputs = state.rooms.reduce((acc, el) => {
+        if (el?.items?.length) {
+          el.items.forEach((item) => {
+            if (!item.area) {
+              item.isInputError = true;
+            }
+          });
+        }
+        acc.push(el);
+        return acc;
+      }, []);
+      return { ...state, rooms: roomsWithErrorInputs };
     case SET_PARAMS_VALUE:
       const { value, name } = action.payload;
       return { ...state, params: { ...state.params, [name]: value } };
@@ -213,10 +237,10 @@ const reducer = (state, action) => {
             const room = {
               id: Date.now(),
               area: 0,
+              isInputError: false,
               currentCeiling: 1,
               currentWall: 1,
               currentFloor: 1,
-              // path: `/room/${Date.now()}`,
             };
             if (action.payload === 'Кімната') {
               room.path = `/room/${room.id}`;

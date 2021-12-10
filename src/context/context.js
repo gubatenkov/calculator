@@ -19,6 +19,7 @@ const initialState = {
         {
           id: 380,
           area: 0,
+          isInputError: false,
           currentCeiling: 1,
           currentWall: 1,
           currentFloor: 1,
@@ -27,6 +28,7 @@ const initialState = {
         {
           id: 950,
           area: 0,
+          isInputError: false,
           currentCeiling: 1,
           currentWall: 1,
           currentFloor: 1,
@@ -35,6 +37,7 @@ const initialState = {
         {
           id: 311,
           area: 0,
+          isInputError: false,
           currentCeiling: 1,
           currentWall: 1,
           currentFloor: 1,
@@ -49,6 +52,7 @@ const initialState = {
         {
           id: 1,
           area: 0,
+          isInputError: false,
           currentCeiling: 1,
           currentWall: 1,
           currentFloor: 1,
@@ -63,6 +67,7 @@ const initialState = {
         {
           id: 1,
           area: 0,
+          isInputError: false,
           currentCeiling: 1,
           currentWall: 1,
           currentFloor: 1,
@@ -76,6 +81,18 @@ const initialState = {
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  const resetErrorInputs = () => {
+    dispatch({
+      type: 'RESET_ERROR_INPUTS',
+    });
+  };
+
+  const setErrorInputs = () => {
+    dispatch({
+      type: 'SET_ERROR_INPUTS',
+    });
+  };
 
   const setActiveKitchenWall = (roomId, activeNum) => {
     dispatch({
@@ -180,6 +197,8 @@ const AppProvider = ({ children }) => {
         setActiveKitchenWall,
         setActiveKitchenFloor,
         handleChange,
+        setErrorInputs,
+        resetErrorInputs,
       }}
     >
       {children}

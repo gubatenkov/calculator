@@ -2,12 +2,6 @@ import React from 'react';
 import { Button, TextField } from '@material-ui/core';
 
 const FormItem = ({ name, items, inc, dec, updateArea }) => {
-  items.sort((a, b) => {
-    if (a.id > b.id) return -1;
-    if (a.id < b.id) return 1;
-    return 0;
-  });
-
   return (
     <div className='rooms-form__item'>
       <div className='rooms-form__item-left'>
@@ -34,6 +28,8 @@ const FormItem = ({ name, items, inc, dec, updateArea }) => {
                 InputProps={{ inputProps: { min: 0, max: 10, maxLength: 2 } }}
                 variant='outlined'
                 onChange={(e) => updateArea(i.id, name, e.target.value)}
+                required
+                error={i.isInputError}
               />
               <span>
                 м<sup>2</sup>

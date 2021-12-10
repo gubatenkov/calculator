@@ -1,27 +1,52 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
+import { useNavigate } from 'react-router-dom';
 
 import FormItem from './FormItem';
 import { useGlobalContext } from 'context/context';
-import { Link } from 'react-router-dom';
+import { isAllAreaInputsValid } from 'utils/functions';
 
 const RoomsForm = () => {
-  const { addRoom, removeRoom, rooms, updateRoomArea, setCurrentStep } =
-    useGlobalContext();
+  const {
+    addRoom,
+    removeRoom,
+    rooms,
+    updateRoomArea,
+    setCurrentStep,
+    setErrorInputs,
+    resetErrorInputs,
+  } = useGlobalContext();
+  const navigate = useNavigate();
 
   const isAnyRoomSelected = rooms.reduce((acc, el) => {
     return acc + el?.items?.length;
   }, 0);
 
-  const firstRoomPath = rooms.reduce((acc, el) => {
-    if (el?.items?.length > 0) {
-      acc = el.items[0].path;
+  const getFirstRoomPath = (rooms) => {
+    for (let room of rooms) {
+      if (room?.items?.length) {
+        return room.items[0].path;
+      }
     }
-    return acc;
-  }, '');
+    return '/';
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // if some rooms area inputs invalid
+    if (!isAllAreaInputsValid(rooms)) {
+      //make area inputs red
+      setErrorInputs();
+    } else {
+      // reset red inputs
+      resetErrorInputs();
+      // redirect to customization page
+      navigate(getFirstRoomPath(rooms));
+    }
+  };
 
   return (
-    <form className='rooms-form'>
+    <form className='rooms-form' onSubmit={handleSubmit}>
       <div className='rooms-form__heading'>
         <h1 className='rooms-form__heading-title'>Вибір кімнат</h1>
         <p className='rooms-form__heading-subtitle'>
@@ -49,8 +74,7 @@ const RoomsForm = () => {
           className='rooms-form__btn'
           variant='outlined'
           color='secondary'
-          component={Link}
-          to={firstRoomPath}
+          type='submit'
         >
           Перейти до дизайну
         </Button>

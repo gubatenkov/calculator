@@ -4,8 +4,6 @@ import { Paper } from '@material-ui/core';
 import img from 'assets/images/calc.png';
 
 const TotalsCard = (props) => {
-  console.log(props);
-
   return (
     <Paper
       className='totals-card'

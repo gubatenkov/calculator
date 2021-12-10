@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Menu, MenuItem, Paper } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 import { useGlobalContext } from 'context/context';
-import { Link } from 'react-router-dom';
+import { isAllAreaInputsValid } from 'utils/functions';
 
 const Sidebar = () => {
   const { rooms } = useGlobalContext();
@@ -12,7 +13,7 @@ const Sidebar = () => {
       <Button className='sidebar-btn' fullWidth component={Link} to='/'>
         Параметри
       </Button>
-      {!!rooms?.length &&
+      {rooms?.length &&
         rooms.map((r) => {
           if (r?.items?.length > 0) {
             return (
@@ -24,9 +25,11 @@ const Sidebar = () => {
             return <SidebarItem key={r.name} {...r} />;
           }
         })}
-      <Button className='sidebar-btn' fullWidth component={Link} to='/result'>
-        Результат
-      </Button>
+      {isAllAreaInputsValid(rooms) && (
+        <Button className='sidebar-btn' fullWidth component={Link} to='/result'>
+          Результат
+        </Button>
+      )}
     </Paper>
   );
 };
