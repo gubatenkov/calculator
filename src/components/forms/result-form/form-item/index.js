@@ -1,10 +1,15 @@
 import React from 'react';
 import { TextField } from '@material-ui/core';
 
-const FormItem = (props) => {
+const FormItem = ({ registerInput, validator, errors, ...rest }) => {
   return (
     <div className='form-item'>
-      <TextField {...props} />
+      <TextField
+        {...rest}
+        {...registerInput(rest.name, validator)}
+        error={!!errors}
+        helperText={errors?.message ?? ''}
+      />
     </div>
   );
 };

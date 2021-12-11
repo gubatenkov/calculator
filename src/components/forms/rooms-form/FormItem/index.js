@@ -45,15 +45,19 @@ const FormItem = ({ name, items, inc, dec, updateArea }) => {
 const Counter = ({ qty = 1, inc, dec }) => {
   return (
     <div className='counter'>
-      <Button
-        className='counter-btn dec'
-        color='primary'
-        variant='outlined'
-        onClick={dec}
-      >
-        -
-      </Button>
-      <span className='counter-val'>{qty}</span>
+      {!!qty && (
+        <>
+          <Button
+            className='counter-btn dec'
+            color='primary'
+            variant='outlined'
+            onClick={dec}
+          >
+            -
+          </Button>
+          <span className='counter-val'>{qty}</span>
+        </>
+      )}
       <Button
         className='counter-btn inc'
         color='primary'

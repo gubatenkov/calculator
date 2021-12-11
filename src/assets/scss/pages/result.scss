@@ -18,6 +18,11 @@
     width: 100%;
     margin: 0 auto;
 
+    .MuiFormHelperText-contained {
+      margin: 0 0 0 0 !important;
+      text-align: center;
+    }
+
     &__title {
       margin: 0 0 40px 0;
 

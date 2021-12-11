@@ -1,6 +1,5 @@
 export const isAllAreaInputsValid = (rooms = []) => {
   let output = false;
-
   let selectedRooms = rooms.reduce((acc, el) => {
     if (el?.items?.length) {
       acc.push(el);

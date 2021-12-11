@@ -38,6 +38,7 @@ const SidebarItemWithSubMenu = ({ name, items }) => {
   const [anchorEl, setAnchor] = useState(null);
 
   const handleClose = () => setAnchor(null);
+
   return (
     <>
       <Button
@@ -65,7 +66,12 @@ const SidebarItemWithSubMenu = ({ name, items }) => {
       >
         {!!items?.length &&
           items.map((i, idx) => (
-            <MenuItem key={i.id} component={Link} to={i.path}>
+            <MenuItem
+              key={i.id}
+              component={Link}
+              to={i.path}
+              disabled={!!!i.area}
+            >
               {name + ` ${idx + 1}`}
             </MenuItem>
           ))}

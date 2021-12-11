@@ -1,12 +1,20 @@
 import React from 'react';
 import { Button, Paper } from '@material-ui/core';
+import { useForm } from 'react-hook-form';
 
-import FormItem from './form-item';
 import { TotalsCard } from 'components';
+import FormItem from './form-item';
+import { resultFormValidators } from 'utils/form-validators';
 
 const ResultForm = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
   };
 
   return (
@@ -23,29 +31,41 @@ const ResultForm = () => {
       />
 
       <Paper className='result-paper' elevation={3}>
-        <form className='result-form' onSubmit={handleSubmit}>
+        <form className='result-form' onSubmit={handleSubmit(onSubmit)}>
           <p className='result-form__title'>Отримайте детальні розрахунки</p>
           <div className='result-form__group'>
             <FormItem
               className='result-form__field'
+              name='name'
               label="Iм'я"
               type='text'
               fullWidth
               variant='outlined'
+              registerInput={register}
+              validator={resultFormValidators.name}
+              errors={errors.name}
             />
             <FormItem
               className='result-form__field'
+              name='email'
               label='Email'
               type='email'
               fullWidth
               variant='outlined'
+              registerInput={register}
+              validator={resultFormValidators.email}
+              errors={errors.email}
             />
             <FormItem
               className='result-form__field'
+              name='phone'
               label='Телефон'
               type='tel'
               fullWidth
               variant='outlined'
+              registerInput={register}
+              validator={resultFormValidators.phone}
+              errors={errors.phone}
             />
           </div>
 

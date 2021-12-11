@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button } from '@material-ui/core';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,7 +17,6 @@ const RoomsForm = () => {
     resetErrorInputs,
   } = useGlobalContext();
   const navigate = useNavigate();
-
   const isAnyRoomSelected = rooms.reduce((acc, el) => {
     return acc + el?.items?.length;
   }, 0);
@@ -38,12 +37,17 @@ const RoomsForm = () => {
       //make area inputs red
       setErrorInputs();
     } else {
-      // reset red inputs
-      resetErrorInputs();
       // redirect to customization page
       navigate(getFirstRoomPath(rooms));
     }
   };
+
+  // reset red inputs on unmounting
+  useEffect(
+    () => () => resetErrorInputs(),
+    // eslint-disable-next-line
+    []
+  );
 
   return (
     <form className='rooms-form' onSubmit={handleSubmit}>
