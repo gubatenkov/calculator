@@ -4,6 +4,9 @@
 
   .card-top {
     &__preview {
+      width: 100%;
+      max-width: 500px;
+      height: 280px;
       margin-bottom: 25px;
       border-radius: 5px;
       box-shadow: 0 0 0 2px #fff;

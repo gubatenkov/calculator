@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import { ImageCard, ParamsForm, RoomsForm } from 'components';
 import { Button, Grid } from '@material-ui/core';
@@ -12,10 +12,22 @@ const ParamsPage = () => {
     params: { currentStep },
     setCurrentStep,
   } = useGlobalContext();
+  const ref = useRef(null);
+
+  const centerContent = (ref) => {
+    const content = ref.current;
+    const contentSizes = content.getBoundingClientRect();
+    const margin = Math.floor(window.innerHeight / 2 - contentSizes.height / 2);
+    content.style.marginTop = `${margin}px`;
+  };
+
+  useEffect(() => {
+    centerContent(ref);
+  }, [currentStep]);
 
   if (currentStep === 1) {
     return (
-      <div className='params'>
+      <div className='params' ref={ref}>
         <div className='container'>
           <div className='params-inner'>
             <ParamsForm />
@@ -27,7 +39,7 @@ const ParamsPage = () => {
 
   if (currentStep === 2) {
     return (
-      <div className='params'>
+      <div className='params' ref={ref}>
         <div className='container'>
           <div className='params-inner'>
             <div className='params-heading'>
@@ -83,7 +95,7 @@ const ParamsPage = () => {
 
   if (currentStep === 3) {
     return (
-      <div className='params'>
+      <div className='params' ref={ref}>
         <div className='container'>
           <div className='params-inner'>
             <RoomsForm />
