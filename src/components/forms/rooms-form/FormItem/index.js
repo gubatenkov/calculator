@@ -1,7 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, TextField } from '@material-ui/core';
 
 const FormItem = ({ name, items, inc, dec, updateArea }) => {
+  const [focusedInputValue, setFocusedInputValue] = useState(0);
+
+  const handleChange = (e, id, name) => {
+    const value = e.target.value;
+    setFocusedInputValue(value);
+    updateArea(id, name, e.target.value);
+  };
+
+  const handleFocus = (e) => {
+    const value = e.target.value;
+    setFocusedInputValue(value);
+    e.target.value = '';
+  };
+
+  const handleBlur = (e) => {
+    e.target.value = focusedInputValue;
+  };
+
   return (
     <div className='rooms-form__item'>
       <div className='rooms-form__item-left'>
@@ -24,13 +42,15 @@ const FormItem = ({ name, items, inc, dec, updateArea }) => {
                 className='rooms-form__item-area'
                 id='outlined-number'
                 type='tel'
-                value={i.area}
+                defaultValue={i.area}
                 InputProps={{ inputProps: { min: 0, max: 10, maxLength: 2 } }}
                 variant='outlined'
-                onChange={(e) => updateArea(i.id, name, e.target.value)}
-                required
-                error={i.isInputError}
                 autoComplete='off'
+                error={i.isInputError}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                onChange={(e) => handleChange(e, i.id, name)}
+                required
               />
               <span>
                 м<sup>2</sup>

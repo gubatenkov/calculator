@@ -22,15 +22,6 @@ const RoomsForm = () => {
     return acc + el?.items?.length;
   }, 0);
 
-  const getFirstRoomPath = (rooms) => {
-    for (let room of rooms) {
-      if (room?.items?.length) {
-        return room.items[0].path;
-      }
-    }
-    return '/';
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     // if some rooms area inputs invalid
@@ -41,6 +32,15 @@ const RoomsForm = () => {
       // redirect to customization page
       navigate(getFirstRoomPath(rooms));
     }
+  };
+
+  const getFirstRoomPath = (rooms) => {
+    for (let room of rooms) {
+      if (room?.items?.length) {
+        return room.items[0].path;
+      }
+    }
+    return '/';
   };
 
   // reset red inputs on unmounting
