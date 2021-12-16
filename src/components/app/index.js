@@ -4,12 +4,12 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 
 import {
   Sidebar,
+  Loading,
   ParamsPage,
   RoomPage,
   ToiletPage,
   KitchenPage,
   ResultPage,
-  Loading,
 } from 'components';
 
 const App = () => {

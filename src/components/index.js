@@ -20,3 +20,11 @@ export { default as SelectDropdown } from 'components/pages/room-page/select-dro
 export { default as TotalsCard } from 'components/totals-card';
 export { default as Sidebar } from 'components/sidebar';
 export { default as Loading } from 'components/loading';
+
+// export const lazy = {
+//   ParamsPage: React.lazy(() => import('components/pages/params-page')),
+//   RoomPage: React.lazy(() => import('components/pages/room-page')),
+//   ToiletPage: React.lazy(() => import('components/pages/toilet-page')),
+//   KitchenPage: React.lazy(() => import('components/pages/kitchen-page')),
+//   ResultPage: React.lazy(() => import('components/pages/result-page')),
+// };
