@@ -14,7 +14,7 @@ const ParamsPage = () => {
   } = useGlobalContext();
   const ref = useRef(null);
 
-  const centerContent = (ref) => {
+  const centerContentToWindow = (ref) => {
     const content = ref.current;
     const contentSizes = content.getBoundingClientRect();
     const margin = Math.floor(window.innerHeight / 2 - contentSizes.height / 2);
@@ -22,7 +22,7 @@ const ParamsPage = () => {
   };
 
   useEffect(() => {
-    centerContent(ref);
+    centerContentToWindow(ref);
   }, [currentStep]);
 
   if (currentStep === 1) {

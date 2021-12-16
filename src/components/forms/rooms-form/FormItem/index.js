@@ -30,6 +30,7 @@ const FormItem = ({ name, items, inc, dec, updateArea }) => {
                 onChange={(e) => updateArea(i.id, name, e.target.value)}
                 required
                 error={i.isInputError}
+                autoComplete='off'
               />
               <span>
                 м<sup>2</sup>

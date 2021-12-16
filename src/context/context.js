@@ -77,6 +77,7 @@ const initialState = {
       maxItems: 1,
     },
   ],
+  totalArea: 0,
 };
 
 const AppProvider = ({ children }) => {

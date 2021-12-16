@@ -11,6 +11,7 @@ const RoomsForm = () => {
     addRoom,
     removeRoom,
     rooms,
+    totalArea,
     updateRoomArea,
     setCurrentStep,
     setErrorInputs,
@@ -54,7 +55,7 @@ const RoomsForm = () => {
       <div className='rooms-form__heading'>
         <h1 className='rooms-form__heading-title'>Вибір кімнат</h1>
         <p className='rooms-form__heading-subtitle'>
-          Загальна площа: 0.00{' '}
+          Загальна площа: {totalArea}{' '}
           <span>
             м<sup>2</sup>
           </span>

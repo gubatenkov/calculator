@@ -92,7 +92,6 @@ const reducer = (state, action) => {
         acc.push(el);
         return acc;
       }, []);
-
       return {
         ...state,
         rooms: kitchenWithUpdCurrWall,
@@ -110,7 +109,6 @@ const reducer = (state, action) => {
         acc.push(el);
         return acc;
       }, []);
-
       return {
         ...state,
         rooms: toiletWithUpdCurrWall,
@@ -128,7 +126,6 @@ const reducer = (state, action) => {
         acc.push(el);
         return acc;
       }, []);
-
       return {
         ...state,
         rooms: toiletWithUpdCurrFloor,
@@ -146,7 +143,6 @@ const reducer = (state, action) => {
         acc.push(el);
         return acc;
       }, []);
-
       return {
         ...state,
         rooms: toiletWithUpdCurrCeiling,
@@ -164,12 +160,10 @@ const reducer = (state, action) => {
         acc.push(el);
         return acc;
       }, []);
-
       return {
         ...state,
         rooms: roomsWithUpdCurrFloor,
       };
-
     case SET_ROOM_ACTIVE_WALL:
       const roomsWithUpdCurrWall = state.rooms.reduce((acc, el) => {
         if (el.name === 'Кімната') {
@@ -183,7 +177,6 @@ const reducer = (state, action) => {
         acc.push(el);
         return acc;
       }, []);
-
       return {
         ...state,
         rooms: roomsWithUpdCurrWall,
@@ -201,7 +194,6 @@ const reducer = (state, action) => {
         acc.push(el);
         return acc;
       }, []);
-
       return {
         ...state,
         rooms: roomsWithUpdCurrCeiling,
@@ -218,8 +210,14 @@ const reducer = (state, action) => {
         acc.push(el);
         return acc;
       }, []);
-
-      return { ...state, roomsWithUpdArea };
+      const calculatedArea = roomsWithUpdArea.reduce((acc, el) => {
+        if (el?.items?.length) {
+          const itemsArea = el.items.reduce((acc, el) => (acc += el.area), 0);
+          acc += itemsArea;
+        }
+        return acc;
+      }, 0);
+      return { ...state, roomsWithUpdArea, totalArea: calculatedArea };
     case REMOVE_ROOM:
       const roomsWithRemoved = state.rooms.reduce((acc, el) => {
         if (el.name === action.payload) {
@@ -228,8 +226,18 @@ const reducer = (state, action) => {
         acc.push(el);
         return acc;
       }, []);
-
-      return { ...state, roomsWithRemoved };
+      const calculatedAreaAfterRemoved = state.rooms.reduce((acc, el) => {
+        if (el?.items?.length) {
+          const itemsArea = el.items.reduce((acc, el) => (acc += el.area), 0);
+          acc += itemsArea;
+        }
+        return acc;
+      }, 0);
+      return {
+        ...state,
+        roomsWithRemoved,
+        totalArea: calculatedAreaAfterRemoved,
+      };
     case ADD_ROOM:
       const roomsWithAdded = state.rooms.reduce((acc, el) => {
         if (el.name === action.payload) {
@@ -255,8 +263,14 @@ const reducer = (state, action) => {
         acc.push(el);
         return acc;
       }, []);
-
-      return { ...state, roomsWithAdded };
+      const calculatedAreaAfterAdded = state.rooms.reduce((acc, el) => {
+        if (el?.items?.length) {
+          const itemsArea = el.items.reduce((acc, el) => (acc += el.area), 0);
+          acc += itemsArea;
+        }
+        return acc;
+      }, 0);
+      return { ...state, roomsWithAdded, totalArea: calculatedAreaAfterAdded };
     case SET_CURRENT_STEP:
       return {
         ...state,
