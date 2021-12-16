@@ -6,8 +6,8 @@ const AppContext = createContext();
 const initialState = {
   params: {
     currentStep: 1,
-    region: 1,
-    city: 'Київ',
+    region: 13,
+    city: 'Одесса',
     objectStatus: 1,
     ceilingHeight: 1,
   },

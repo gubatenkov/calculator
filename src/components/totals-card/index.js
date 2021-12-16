@@ -2,8 +2,11 @@ import React from 'react';
 import { Paper } from '@material-ui/core';
 
 import img from 'assets/images/calc.png';
+import { useGlobalContext } from 'context/context';
 
 const TotalsCard = (props) => {
+  const { totalArea } = useGlobalContext();
+
   return (
     <Paper
       className='totals-card'
@@ -22,7 +25,7 @@ const TotalsCard = (props) => {
       </div>
       <div className='totals-card__right'>
         <p>
-          Загальна площа: 23.00{' '}
+          Загальна площа: {totalArea}{' '}
           <span>
             м<sup>2</sup>
           </span>
