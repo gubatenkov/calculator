@@ -1,10 +1,18 @@
-import React from 'react'
+import React from 'react';
 
-export const ParamsPage = React.lazy(() => import('components/pages/params-page'));
+export const ParamsPage = React.lazy(() =>
+  import('components/pages/params-page')
+);
 export const RoomPage = React.lazy(() => import('components/pages/room-page'));
-export const ToiletPage = React.lazy(() => import('components/pages/toilet-page'));
-export const KitchenPage = React.lazy(() => import('components/pages/kitchen-page'));
-export const ResultPage = React.lazy(() => import('components/pages/result-page'));
+export const ToiletPage = React.lazy(() =>
+  import('components/pages/toilet-page')
+);
+export const KitchenPage = React.lazy(() =>
+  import('components/pages/kitchen-page')
+);
+export const ResultPage = React.lazy(() =>
+  import('components/pages/result-page')
+);
 
 export { default as App } from 'components/app';
 export { default as RoomsForm } from 'components/forms/rooms-form';
@@ -19,5 +27,4 @@ export { default as Floors } from 'components/pages/room-page/floors';
 export { default as SelectDropdown } from 'components/pages/room-page/select-dropdown';
 export { default as TotalsCard } from 'components/totals-card';
 export { default as Sidebar } from 'components/sidebar';
-
-
+export { default as Loading } from 'components/loading';

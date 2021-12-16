@@ -18,11 +18,11 @@ export const floors = [
 ];
 
 export const toiletFloors = [
-  { label: 'Укладання лінолеуму', img: null, variant: 1 },
-  { label: 'Укладання ламінату', img: null, variant: 2 },
-  { label: 'Укладання вінілової підлоги', img: null, variant: 3 },
-  { label: 'Укладання паркету', img: null, variant: 4 },
-  { label: 'Укладання плитки', img: null, variant: 5 },
+  { label: 'Пофарбована', img: null, variant: 1 },
+  { label: 'Пiд плитку', img: null, variant: 2 },
+  // { label: 'Укладання вінілової підлоги', img: null, variant: 3 },
+  // { label: 'Укладання паркету', img: null, variant: 4 },
+  // { label: 'Укладання плитки', img: null, variant: 5 },
 ];
 
 export const kitchenFloors = [

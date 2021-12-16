@@ -12,9 +12,9 @@ export const walls = [
 ];
 
 export const toiletWalls = [
-  { label: 'Поклейка шпалер', img: null, variant: 1 },
-  { label: 'Стіни під фарбування', img: null, variant: 2 },
-  { label: 'Стіни під фарбування з молдінгами', img: null, variant: 3 },
+  { label: 'Пофарбованi', img: null, variant: 1 },
+  { label: 'Пiд плитку', img: null, variant: 2 },
+  // { label: 'Стіни під фарбування з молдінгами', img: null, variant: 3 },
 ];
 
 export const kitchenWalls = [

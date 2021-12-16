@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import 'assets/scss/app.scss';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import {
   Sidebar,
@@ -9,19 +9,21 @@ import {
   ToiletPage,
   KitchenPage,
   ResultPage,
+  Loading,
 } from 'components';
 
 const App = () => {
   return (
     <div className='app'>
       <Sidebar />
-      <Suspense fallback={<div>...Загрузка</div>}>
+      <Suspense fallback={<Loading />}>
         <Routes>
           <Route exact path='/' element={<ParamsPage />} />
           <Route path='/room/:id' element={<RoomPage />} />
           <Route path='/toilet/:id' element={<ToiletPage />} />
           <Route path='/kitchen/:id' element={<KitchenPage />} />
           <Route path='/result' element={<ResultPage />} />
+          <Route path='*' element={<Navigate to='/' />} />
         </Routes>
       </Suspense>
     </div>
