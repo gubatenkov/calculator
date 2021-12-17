@@ -1,8 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, TextField } from '@material-ui/core';
+import { useFocus } from 'utils/hooks';
 
 const FormItem = ({ name, items, inc, dec, updateArea }) => {
   const [focusedInputValue, setFocusedInputValue] = useState(0);
+  const [elRef, setInputFocus] = useFocus();
+
+  useEffect(() => {
+    if (elRef && elRef.current) {
+      setInputFocus();
+    }
+    // eslint-disable-next-line
+  }, [items.length]);
 
   const handleChange = (e, id, name) => {
     let value = +e.target.value;
@@ -45,6 +54,7 @@ const FormItem = ({ name, items, inc, dec, updateArea }) => {
               <TextField
                 className='rooms-form__item-area'
                 id='outlined-number'
+                ref={elRef}
                 type='tel'
                 defaultValue={i.area}
                 InputProps={{ inputProps: { min: 0, max: 10, maxLength: 2 } }}

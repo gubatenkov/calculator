@@ -9,7 +9,7 @@ import kitchenCeiling2 from 'assets/images/kitchen/ceilings/gipsokarton.webp';
 
 export const ceilings = [
   { label: 'Пофарбована', img: ceiling1, variant: 1 },
-  { label: 'Стеля з гiпсокартону', img: ceiling2, variant: 2 },
+  { label: 'З гiпсокартону', img: ceiling2, variant: 2 },
   // { label: 'Натяжна стеля', img: ceiling3, variant: 3 },
 ];
 
@@ -28,6 +28,6 @@ export const kitchenCeilings = [
     img: kitchenCeiling1,
     variant: 1,
   },
-  { label: 'Стеля з гiпсокартону', img: kitchenCeiling2, variant: 2 },
+  { label: 'З гiпсокартону', img: kitchenCeiling2, variant: 2 },
   // { label: 'Натяжна стеля', img: kitchenCeiling3, variant: 3 },
 ];
