@@ -1,14 +1,14 @@
 import wall1 from 'assets/images/room/walls/shpaleri.webp';
 import wall2 from 'assets/images/room/walls/farbuvanya.webp';
-import wall3 from 'assets/images/room/walls/moldings.webp';
+// import wall3 from 'assets/images/room/walls/moldings.webp';
 import kitchenWall1 from 'assets/images/kitchen/walls/shpaleri.webp';
 import kitchenWall2 from 'assets/images/kitchen/walls/farbovana.webp';
-import kitchenWall3 from 'assets/images/kitchen/walls/moldings.webp';
+// import kitchenWall3 from 'assets/images/kitchen/walls/moldings.webp';
 
 export const walls = [
-  { label: 'Поклейка шпалер', img: wall1, variant: 1 },
-  { label: 'Стіни під фарбування', img: wall2, variant: 2 },
-  { label: 'Стіни під фарбування з молдінгами', img: wall3, variant: 3 },
+  { label: 'Шпалери', img: wall1, variant: 1 },
+  { label: 'Пофарбованi', img: wall2, variant: 2 },
+  // { label: 'Стіни під фарбування з молдінгами', img: wall3, variant: 3 },
 ];
 
 export const toiletWalls = [
@@ -18,7 +18,7 @@ export const toiletWalls = [
 ];
 
 export const kitchenWalls = [
-  { label: 'Поклейка шпалер', img: kitchenWall1, variant: 1 },
-  { label: 'Стіни під фарбування', img: kitchenWall2, variant: 2 },
-  { label: 'Стіни під фарбування з молдінгами', img: kitchenWall3, variant: 3 },
+  { label: 'Шпалери', img: kitchenWall1, variant: 1 },
+  { label: 'Пофарбованi', img: kitchenWall2, variant: 2 },
+  // { label: 'Стіни під фарбування з молдінгами', img: kitchenWall3, variant: 3 },
 ];
