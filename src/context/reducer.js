@@ -203,7 +203,7 @@ const reducer = (state, action) => {
         if (el.name === action.payload.name) {
           el.items.forEach((item) =>
             item.id === action.payload.id
-              ? (item.area = Number(action.payload.area))
+              ? (item.area = action.payload.area)
               : item
           );
         }
@@ -212,7 +212,7 @@ const reducer = (state, action) => {
       }, []);
       const calculatedArea = roomsWithUpdArea.reduce((acc, el) => {
         if (el?.items?.length) {
-          const itemsArea = el.items.reduce((acc, el) => (acc += el.area), 0);
+          const itemsArea = el.items.reduce((acc, el) => (acc += +el.area), 0);
           acc += itemsArea;
         }
         return acc;
@@ -228,7 +228,7 @@ const reducer = (state, action) => {
       }, []);
       const calculatedAreaAfterRemoved = state.rooms.reduce((acc, el) => {
         if (el?.items?.length) {
-          const itemsArea = el.items.reduce((acc, el) => (acc += el.area), 0);
+          const itemsArea = el.items.reduce((acc, el) => (acc += +el.area), 0);
           acc += itemsArea;
         }
         return acc;
@@ -265,7 +265,7 @@ const reducer = (state, action) => {
       }, []);
       const calculatedAreaAfterAdded = state.rooms.reduce((acc, el) => {
         if (el?.items?.length) {
-          const itemsArea = el.items.reduce((acc, el) => (acc += el.area), 0);
+          const itemsArea = el.items.reduce((acc, el) => (acc += +el.area), 0);
           acc += itemsArea;
         }
         return acc;

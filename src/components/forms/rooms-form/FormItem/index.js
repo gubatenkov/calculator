@@ -1,38 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Button, TextField } from '@material-ui/core';
-import { useFocus } from 'utils/hooks';
 
 const FormItem = ({ name, items, inc, dec, updateArea }) => {
-  const [focusedInputValue, setFocusedInputValue] = useState(0);
-  const [elRef, setInputFocus] = useFocus();
-
-  useEffect(() => {
-    if (elRef && elRef.current) {
-      setInputFocus();
-    }
-    // eslint-disable-next-line
-  }, [items.length]);
-
-  const handleChange = (e, id, name) => {
-    let value = +e.target.value;
-    if (typeof value === 'number' && !isNaN(value)) {
-      setFocusedInputValue(value);
-      updateArea(id, name, value);
-    }
-  };
-
-  const handleFocus = (e) => {
-    const value = +e.target.value;
-    if (typeof value === 'number') {
-      setFocusedInputValue(value);
-    }
-    e.target.value = '';
-  };
-
-  const handleBlur = (e) => {
-    e.target.value = focusedInputValue;
-  };
-
   return (
     <div className='rooms-form__item'>
       <div className='rooms-form__item-left'>
@@ -45,26 +14,16 @@ const FormItem = ({ name, items, inc, dec, updateArea }) => {
           />
         </div>
       </div>
-
       <div className='rooms-form__item-wrap'>
         {items.map((i) => (
           <div className='rooms-form__item-right' key={i.id}>
             <div className='rooms-form__item-name'>Площа</div>
             <div className='rooms-form__item-calc'>
-              <TextField
+              <AreaInput
                 className='rooms-form__item-area'
-                id='outlined-number'
-                ref={elRef}
-                type='tel'
-                defaultValue={i.area}
-                InputProps={{ inputProps: { min: 0, max: 10, maxLength: 2 } }}
-                variant='outlined'
-                autoComplete='off'
-                error={i.isInputError}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                onChange={(e) => handleChange(e, i.id, name)}
-                required
+                item={i}
+                name={name}
+                updateArea={updateArea}
               />
               <span>
                 м<sup>2</sup>
@@ -102,6 +61,41 @@ const Counter = ({ qty = 1, inc, dec }) => {
         +
       </Button>
     </div>
+  );
+};
+
+const AreaInput = ({ item, name, updateArea, ...restProps }) => {
+  const [inputValue, setInputValue] = useState(item.area);
+
+  const handleChange = (e, id, name) => {
+    const value = +e.target.value;
+    if (typeof value === 'number' && !isNaN(value)) {
+      setInputValue(value);
+      updateArea(id, name, value);
+    }
+  };
+
+  const handleFocus = () => setInputValue('');
+
+  const handleBlur = () => setInputValue(item.area);
+
+  return (
+    <TextField
+      className='rooms-form__item-area'
+      id='outlined-number'
+      {...restProps}
+      type='tel'
+      value={inputValue}
+      InputProps={{ inputProps: { min: 0, max: 10, maxLength: 2 } }}
+      variant='outlined'
+      autoComplete='off'
+      error={item.isInputError}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+      onChange={(e) => handleChange(e, item.id, name)}
+      required
+      autoFocus
+    />
   );
 };
 
