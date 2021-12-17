@@ -5,14 +5,18 @@ const FormItem = ({ name, items, inc, dec, updateArea }) => {
   const [focusedInputValue, setFocusedInputValue] = useState(0);
 
   const handleChange = (e, id, name) => {
-    const value = e.target.value;
-    setFocusedInputValue(value);
-    updateArea(id, name, e.target.value);
+    let value = +e.target.value;
+    if (typeof value === 'number' && !isNaN(value)) {
+      setFocusedInputValue(value);
+      updateArea(id, name, value);
+    }
   };
 
   const handleFocus = (e) => {
-    const value = e.target.value;
-    setFocusedInputValue(value);
+    const value = +e.target.value;
+    if (typeof value === 'number') {
+      setFocusedInputValue(value);
+    }
     e.target.value = '';
   };
 
