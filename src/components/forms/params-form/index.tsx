@@ -1,29 +1,29 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Button, Paper } from '@material-ui/core';
 
 import { FormItemDropdown, FormItemInput } from 'components';
 import { regions, statuses, ceilings } from 'data/paramsFormData';
 import { useGlobalContext } from 'context/context';
+import { IAppState } from 'interfaces';
 
-const ParamsForm = () => {
+const ParamsForm: FC = () => {
   const {
     params: { city, region, objectStatus, ceilingHeight },
     setCurrentStep,
     handleChange,
-  } = useGlobalContext();
+  }: IAppState = useGlobalContext();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
     setCurrentStep(2);
   };
 
   return (
-    <Paper className='params-paper' elevation={3} onSubmit={handleSubmit}>
-      <form className='params-form'>
+    <Paper className='params-paper' elevation={3}>
+      <form className='params-form' onSubmit={handleSubmit}>
         <p className='params-form__title'>Параметри об'єкту</p>
         <div className='params-form__group'>
           <FormItemDropdown
-            className='params-form__field'
             label='Область'
             name='region'
             value={region}
@@ -33,7 +33,6 @@ const ParamsForm = () => {
             onChange={handleChange}
           />
           <FormItemInput
-            className='params-form__field'
             name='city'
             label='Мiсто'
             value={city}
@@ -42,7 +41,6 @@ const ParamsForm = () => {
             onChange={handleChange}
           />
           <FormItemDropdown
-            className='params-form__field'
             name='objectStatus'
             label="Статус об'єкту"
             value={objectStatus}
@@ -52,7 +50,6 @@ const ParamsForm = () => {
             onChange={handleChange}
           />
           <FormItemDropdown
-            className='params-form__field'
             name='ceilingHeight'
             label='Висота стелі'
             value={ceilingHeight}

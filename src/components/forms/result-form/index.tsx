@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Button, Paper } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 
@@ -6,14 +6,14 @@ import { TotalsCard } from 'components';
 import FormItem from './form-item';
 import { resultFormValidators } from 'utils/form-validators';
 
-const ResultForm = () => {
+const ResultForm: FC = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: any) => {
     console.log(data);
   };
 

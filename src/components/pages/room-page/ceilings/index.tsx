@@ -1,18 +1,18 @@
-import React from 'react';
-
+import React, { FC } from 'react';
 import { SelectDropdown } from 'components';
+import { IObjectWallsProps, IObjectDataItem } from 'interfaces';
 
-const Floors = ({ activeItem, items, setActive }) => {
+const Ceilings: FC<IObjectWallsProps> = ({ activeItem, items, setActive }) => {
   return (
     <>
-      {items.map((i, idx) => {
+      {items.map((i: IObjectDataItem, idx: number) => {
         if (i.img) {
           return (
             <img
               className={
                 activeItem === i.variant
-                  ? 'room-floor__img'
-                  : 'room-floor__img hide'
+                  ? 'room-ceil__img'
+                  : 'room-ceil__img hide'
               }
               src={i.img || ''}
               key={idx}
@@ -24,9 +24,9 @@ const Floors = ({ activeItem, items, setActive }) => {
       })}
 
       <SelectDropdown
-        name='Пiдлога'
-        posXinPerc={50}
-        posYinPerc={10}
+        name='Стеля'
+        posXinPerc={40}
+        posYinPerc={90}
         items={items}
         value={activeItem}
         onChange={setActive}
@@ -35,4 +35,4 @@ const Floors = ({ activeItem, items, setActive }) => {
   );
 };
 
-export default Floors;
+export default Ceilings;

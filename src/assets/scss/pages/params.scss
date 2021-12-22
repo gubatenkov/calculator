@@ -80,7 +80,7 @@
 
       &:hover {
         &::after {
-          transform: translateX(-95px);
+          transform: translateX(-10px);
         }
       }
     }
@@ -101,7 +101,10 @@
   }
 
   .params-content {
-    margin: 0 0 50px 0;
+    margin: 0 0 35px 0;
+
+    display: flex;
+    justify-content: center;
   }
 
   .params-actions {
@@ -133,7 +136,7 @@
 
         &:hover {
           &::after {
-            transform: translateX(-25px);
+            transform: translateX(-10px);
           }
         }
       }
@@ -158,7 +161,7 @@
 
         &:hover {
           &::after {
-            transform: translateX(45px);
+            transform: translateX(10px);
           }
         }
       }

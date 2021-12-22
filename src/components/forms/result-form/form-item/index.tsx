@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { TextField } from '@material-ui/core';
+import { FormItemProps } from 'interfaces';
 
-const FormItem = ({ registerInput, validator, errors, ...rest }) => {
+const FormItem: FC<FormItemProps> = ({
+  registerInput,
+  validator,
+  errors,
+  ...rest
+}) => {
   return (
     <div className='form-item'>
       <TextField

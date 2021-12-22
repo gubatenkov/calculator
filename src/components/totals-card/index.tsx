@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Paper } from '@material-ui/core';
 
 import img from 'assets/images/calc.png';
 import { useGlobalContext } from 'context/context';
+import { IAppState } from 'interfaces';
 
-const TotalsCard = (props) => {
-  const { totalArea } = useGlobalContext();
+const TotalsCard: FC<{ style: object }> = ({ style }) => {
+  const { totalArea }: IAppState = useGlobalContext();
 
   return (
     <Paper
       className='totals-card'
       component='div'
       elevation={1}
-      style={{ ...props.style }}
+      style={{ ...style }}
     >
       <div className='totals-card__left'>
         <div className='totals-card__left-text'>

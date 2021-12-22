@@ -1,11 +1,11 @@
-import React from 'react';
-
+import React, { FC } from 'react';
 import { SelectDropdown } from 'components';
+import { IObjectDataItem, IObjectWallsProps } from 'interfaces';
 
-const Walls = ({ activeItem, items, setActive }) => {
+const Walls: FC<IObjectWallsProps> = ({ activeItem, items, setActive }) => {
   return (
     <>
-      {items.map((i, idx) => {
+      {items.map((i: IObjectDataItem, idx: number) => {
         if (i.img) {
           return (
             <img

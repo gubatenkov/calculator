@@ -1,7 +1,22 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import { Button, TextField } from '@material-ui/core';
+import { IRoom } from 'interfaces';
 
-const FormItem = ({ name, items, inc, dec, updateArea }) => {
+interface IFormItemProps {
+  name: string;
+  items: IRoom[];
+  inc: (name: string) => void;
+  dec: (name: string) => void;
+  updateArea: () => void;
+}
+
+const FormItem: FC<IFormItemProps> = ({
+  name,
+  items,
+  inc,
+  dec,
+  updateArea,
+}) => {
   return (
     <div className='rooms-form__item'>
       <div className='rooms-form__item-left'>
@@ -36,7 +51,13 @@ const FormItem = ({ name, items, inc, dec, updateArea }) => {
   );
 };
 
-const Counter = ({ qty = 1, inc, dec }) => {
+interface ICounterProps {
+  qty: number;
+  inc: (e: React.MouseEvent<HTMLButtonElement>, name: string) => void;
+  dec: (e: React.MouseEvent<HTMLButtonElement>, name: string) => void;
+}
+
+const Counter: FC<ICounterProps> = ({ qty = 1, inc, dec }) => {
   return (
     <div className='counter'>
       {!!qty && (
@@ -45,7 +66,7 @@ const Counter = ({ qty = 1, inc, dec }) => {
             className='counter-btn dec'
             color='primary'
             variant='outlined'
-            onClick={dec}
+            onClick={(e) => dec(e, 'dec')}
           >
             -
           </Button>
@@ -56,7 +77,7 @@ const Counter = ({ qty = 1, inc, dec }) => {
         className='counter-btn inc'
         color='primary'
         variant='outlined'
-        onClick={() => inc('inc')}
+        onClick={(e) => inc(e, 'inc')}
       >
         +
       </Button>
@@ -64,10 +85,26 @@ const Counter = ({ qty = 1, inc, dec }) => {
   );
 };
 
-const AreaInput = ({ item, name, updateArea, ...restProps }) => {
-  const [inputValue, setInputValue] = useState(item.area);
+interface IAreaInputProps {
+  item: any;
+  name: string;
+  updateArea: (id: number, name: string, value: number) => void;
+  [x: string]: any;
+}
 
-  const handleChange = (e, id, name) => {
+const AreaInput: FC<IAreaInputProps> = ({
+  item,
+  name,
+  updateArea,
+  ...restProps
+}) => {
+  const [inputValue, setInputValue] = useState<number | string>(item.area);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+    id: number,
+    name: string
+  ) => {
     const value = +e.target.value;
     if (typeof value === 'number' && !isNaN(value)) {
       setInputValue(value);

@@ -7,6 +7,7 @@ import { toiletCeilings } from 'data/ceils';
 import { toiletWalls } from 'data/walls';
 import { toiletFloors } from 'data/floors';
 import { useNavigate, useParams } from 'react-router-dom';
+import { IAppState, IObject } from 'interfaces';
 
 const ToiletPage = () => {
   const {
@@ -14,11 +15,16 @@ const ToiletPage = () => {
     setActiveToiletCeiling,
     setActiveToiletWall,
     setActiveToiletFloor,
-  } = useGlobalContext();
+  }: IAppState = useGlobalContext();
   let navigate = useNavigate();
-  const { id } = useParams();
-  const toiletRooms = rooms.find((r) => r.name === 'Санвузол');
-  const currentToilet = toiletRooms.items.filter((i) => i.id === +id)[0];
+  const { id } = useParams<string>();
+  const toiletRooms: IObject | undefined = rooms.find(
+    (r: IObject) => r.name === 'Санвузол'
+  );
+  let currentToilet: any;
+  if (toiletRooms) {
+    currentToilet = toiletRooms.items.filter((i) => i.id === Number(id))[0];
+  }
 
   useEffect(() => {
     if (!currentToilet) {

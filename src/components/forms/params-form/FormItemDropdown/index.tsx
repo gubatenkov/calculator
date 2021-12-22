@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
+import { FormItemDropdownProps } from 'interfaces';
 
-const FormItemDropdown = ({
-  className,
+const FormItemDropdown: FC<FormItemDropdownProps> = ({
   label,
   variant,
   fullWidth,
@@ -11,10 +11,16 @@ const FormItemDropdown = ({
   value,
   onChange,
 }) => {
-  const handleChange = (e) => onChange(+e.target.value, e.target.name);
+  const handleChange = (
+    e: React.ChangeEvent<{ value: unknown; name?: unknown }>
+  ) => onChange(Number(e.target.value) as number, e.target.name as string);
 
   return (
-    <FormControl className={className} variant={variant} fullWidth={fullWidth}>
+    <FormControl
+      className='params-form__field'
+      variant={variant}
+      fullWidth={fullWidth}
+    >
       <InputLabel className='form-item__label' id='select'>
         {label}
       </InputLabel>

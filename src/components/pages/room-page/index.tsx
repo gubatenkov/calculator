@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { useGlobalContext } from 'context/context';
 import { Ceilings, Walls, Floors } from 'components';
@@ -6,15 +7,19 @@ import { Ceilings, Walls, Floors } from 'components';
 import { ceilings } from 'data/ceils';
 import { walls } from 'data/walls';
 import { floors } from 'data/floors';
-import { useNavigate, useParams } from 'react-router-dom';
+import { IAppState, IObject, IRoom } from 'interfaces';
 
-const RoomPage = (props) => {
-  const { rooms, setActiveCeiling, setActiveWall, setActiveFloor } =
+const RoomPage: FC = () => {
+  const { rooms, setActiveCeiling, setActiveWall, setActiveFloor }: IAppState =
     useGlobalContext();
   let navigate = useNavigate();
-  const { id } = useParams();
-  const leavingRooms = rooms.find((r) => r.name === 'Кімната');
-  const currentRoom = leavingRooms.items.filter((i) => i.id === +id)[0];
+  const { id } = useParams<string>();
+  const leavingRooms: IObject = rooms.filter(
+    (r: IObject) => r.name === 'Кімната'
+  )[0];
+  const currentRoom: IRoom = leavingRooms.items.filter(
+    (i: IRoom) => i.id === Number(id)
+  )[0];
 
   useEffect(() => {
     if (!currentRoom) {

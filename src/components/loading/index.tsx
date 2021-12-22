@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { FC } from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-const Loading = () => {
+const Loading: FC = () => {
   return (
     <div
       className='loading'

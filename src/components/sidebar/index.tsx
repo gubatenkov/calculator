@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import { Button, Menu, MenuItem, Paper } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
 import { useGlobalContext } from 'context/context';
 import { isAllAreaInputsValid } from 'utils/functions';
+import { IAppState, IObject, IRoom } from 'interfaces';
 
-const Sidebar = () => {
-  const { rooms } = useGlobalContext();
+const Sidebar: FC = () => {
+  const { rooms }: IAppState = useGlobalContext();
 
   return (
     <Paper className='sidebar' elevation={1}>
@@ -14,7 +15,7 @@ const Sidebar = () => {
         Параметри
       </Button>
       {rooms?.length &&
-        rooms.map((r) => {
+        rooms.map((r: IObject) => {
           if (r?.items?.length > 0) {
             return (
               <SidebarItemWithSubMenu key={r.name} {...r} items={r.items} />
@@ -34,8 +35,16 @@ const Sidebar = () => {
   );
 };
 
-const SidebarItemWithSubMenu = ({ name, items }) => {
-  const [anchorEl, setAnchor] = useState(null);
+interface ISidebarItemWithSubMenuProps {
+  name: string;
+  items: IRoom[];
+}
+
+const SidebarItemWithSubMenu: FC<ISidebarItemWithSubMenuProps> = ({
+  name,
+  items,
+}) => {
+  const [anchorEl, setAnchor] = useState<HTMLElement | null>(null);
 
   const handleClose = () => setAnchor(null);
 
@@ -44,7 +53,9 @@ const SidebarItemWithSubMenu = ({ name, items }) => {
       <Button
         className='sidebar-btn'
         fullWidth
-        onClick={(e) => setAnchor(e.currentTarget)}
+        onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+          setAnchor(e.currentTarget)
+        }
       >
         {name}
       </Button>
@@ -65,7 +76,7 @@ const SidebarItemWithSubMenu = ({ name, items }) => {
         }}
       >
         {!!items?.length &&
-          items.map((i, idx) => (
+          items.map((i: IRoom, idx: number) => (
             <MenuItem
               key={i.id}
               component={Link}
@@ -80,9 +91,14 @@ const SidebarItemWithSubMenu = ({ name, items }) => {
   );
 };
 
-const SidebarItem = ({ name, path }) => {
+interface ISidebarItem {
+  name: string;
+  path?: string;
+}
+
+const SidebarItem: FC<ISidebarItem> = ({ name, path = '/' }) => {
   return (
-    <Button className='sidebar-btn' fullWidth component={Link} to={path}>
+    <Button className='sidebar-btn' component={Link} to={path} fullWidth>
       {name}
     </Button>
   );

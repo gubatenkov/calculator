@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 
 import { useGlobalContext } from 'context/context';
 import { Ceilings, Walls, Floors } from 'components';
@@ -7,18 +7,23 @@ import { kitchenCeilings } from 'data/ceils';
 import { kitchenWalls } from 'data/walls';
 import { kitchenFloors } from 'data/floors';
 import { useNavigate, useParams } from 'react-router-dom';
+import { IAppState, IObject, IRoom } from 'interfaces';
 
-const KitchenPage = (props) => {
+const KitchenPage: FC = () => {
   const {
     rooms,
     setActiveKitchenCeiling,
     setActiveKitchenWall,
     setActiveKitchenFloor,
-  } = useGlobalContext();
+  }: IAppState = useGlobalContext();
   let navigate = useNavigate();
-  const { id } = useParams();
-  const kitchenRooms = rooms.find((r) => r.name === 'Кухня');
-  const currentKitchen = kitchenRooms.items.filter((i) => i.id === +id)[0];
+  const { id } = useParams<string>();
+  const kitchenRooms: IObject = rooms.filter(
+    (r: IObject) => r.name === 'Кухня'
+  )[0];
+  const currentKitchen = kitchenRooms.items.filter(
+    (i: IRoom) => i.id === Number(id)
+  )[0];
 
   useEffect(() => {
     if (!currentKitchen) {

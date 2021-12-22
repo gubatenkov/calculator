@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import {
   Button,
   FormControl,
@@ -9,8 +9,18 @@ import {
   RadioGroup,
 } from '@material-ui/core';
 import { useParams } from 'react-router-dom';
+import { IObjectDataItem } from 'interfaces';
 
-const SelectDropdown = ({
+interface ISelectDropdown {
+  items: IObjectDataItem[];
+  value: number;
+  name: string;
+  posXinPerc: number;
+  posYinPerc: number;
+  onChange: (id: number, value: number) => void;
+}
+
+const SelectDropdown: FC<ISelectDropdown> = ({
   items,
   value,
   name,
@@ -19,12 +29,13 @@ const SelectDropdown = ({
   onChange,
 }) => {
   const [isOpen, setOpen] = useState(false);
-  const ref = React.useRef(null);
-  const { id } = useParams();
+  const ref = React.useRef<HTMLDivElement>(document.createElement('div'));
+  const { id } = useParams<string>();
 
-  const handleChange = (e) => onChange(+id, +e.target.value);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void =>
+    onChange(Number(id), Number(e.target.value));
 
-  const handleClick = () => setOpen(true);
+  const handleClick = (): void => setOpen(true);
 
   return (
     <div
@@ -61,7 +72,7 @@ const SelectDropdown = ({
             value={value}
             onChange={handleChange}
           >
-            {items.map((i, idx) => (
+            {items.map((i: IObjectDataItem, idx: number) => (
               <FormControlLabel
                 key={idx}
                 value={i.variant}

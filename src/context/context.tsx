@@ -1,9 +1,14 @@
-import React, { useReducer, useContext, createContext } from 'react';
+import React, {
+  useReducer,
+  useContext,
+  createContext,
+  FC,
+  ReactNode,
+} from 'react';
 import reducer from './reducer';
+import { IAppState } from 'interfaces';
 
-const AppContext = createContext();
-
-const initialState = {
+const initialState: IAppState = {
   params: {
     currentStep: 1,
     region: 13,
@@ -80,7 +85,9 @@ const initialState = {
   totalArea: 0,
 };
 
-const AppProvider = ({ children }) => {
+const AppContext = createContext<IAppState>(initialState);
+
+const AppProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const resetErrorInputs = () => {
@@ -95,72 +102,72 @@ const AppProvider = ({ children }) => {
     });
   };
 
-  const setActiveKitchenWall = (roomId, activeNum) => {
+  const setActiveKitchenWall = (roomId: number, activeNum: number) => {
     dispatch({
       type: 'SET_KITCHEN_ACTIVE_WALL',
       payload: { roomId, activeNum },
     });
   };
 
-  const setActiveKitchenFloor = (roomId, activeNum) => {
+  const setActiveKitchenFloor = (roomId: number, activeNum: number) => {
     dispatch({
       type: 'SET_KITCHEN_ACTIVE_FLOOR',
       payload: { roomId, activeNum },
     });
   };
 
-  const setActiveKitchenCeiling = (roomId, activeNum) => {
+  const setActiveKitchenCeiling = (roomId: number, activeNum: number) => {
     dispatch({
       type: 'SET_KITCHEN_ACTIVE_CEILING',
       payload: { roomId, activeNum },
     });
   };
 
-  const setActiveToiletWall = (roomId, activeNum) => {
+  const setActiveToiletWall = (roomId: number, activeNum: number) => {
     dispatch({
       type: 'SET_TOILET_ACTIVE_WALL',
       payload: { roomId, activeNum },
     });
   };
 
-  const setActiveToiletFloor = (roomId, activeNum) => {
+  const setActiveToiletFloor = (roomId: number, activeNum: number) => {
     dispatch({
       type: 'SET_TOILET_ACTIVE_FLOOR',
       payload: { roomId, activeNum },
     });
   };
 
-  const setActiveToiletCeiling = (roomId, activeNum) => {
+  const setActiveToiletCeiling = (roomId: number, activeNum: number) => {
     dispatch({
       type: 'SET_TOILET_ACTIVE_CEILING',
       payload: { roomId, activeNum },
     });
   };
 
-  const setActiveFloor = (roomId, activeNum) => {
+  const setActiveFloor = (roomId: number, activeNum: number) => {
     dispatch({ type: 'SET_ROOM_ACTIVE_FLOOR', payload: { roomId, activeNum } });
   };
 
-  const setActiveWall = (roomId, activeNum) => {
+  const setActiveWall = (roomId: number, activeNum: number) => {
     dispatch({ type: 'SET_ROOM_ACTIVE_WALL', payload: { roomId, activeNum } });
   };
 
-  const setActiveCeiling = (roomId, activeNum) => {
+  const setActiveCeiling = (roomId: number, activeNum: number) => {
     dispatch({
       type: 'SET_ROOM_ACTIVE_CEILING',
       payload: { roomId, activeNum },
     });
   };
 
-  const updateRoomArea = (id, name, area) => {
+  const updateRoomArea = (id: number, name: string, area: number) => {
     dispatch({ type: 'UPDATE_ROOM_AREA', payload: { id, name, area } });
   };
 
-  const removeRoom = (name) => {
+  const removeRoom = (name: string) => {
     dispatch({ type: 'REMOVE_ROOM', payload: name });
   };
 
-  const addRoom = (name) => {
+  const addRoom = (name: string) => {
     dispatch({
       type: 'ADD_ROOM',
       payload: name,
@@ -171,11 +178,11 @@ const AppProvider = ({ children }) => {
     dispatch({ type: 'TOGGLE_NEW_WALLS' });
   };
 
-  const setCurrentStep = (step) => {
+  const setCurrentStep = (step: number) => {
     dispatch({ type: 'SET_CURRENT_STEP', payload: step });
   };
 
-  const handleChange = (value, name) => {
+  const handleChange = (value: number | string, name: string) => {
     dispatch({ type: 'SET_PARAMS_VALUE', payload: { value, name } });
   };
 

@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Switch } from '@material-ui/core';
+import { IImageCardProps } from 'interfaces';
 
-const ImageCard = ({ img, text, subtext, active, onChange }) => {
+const ImageCard: FC<IImageCardProps> = ({
+  img,
+  text,
+  subtext,
+  active,
+  onChange,
+}) => {
   return (
     <div className='card'>
       <div className='card-top'>

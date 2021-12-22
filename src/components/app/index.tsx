@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { FC, Suspense } from 'react';
 import 'assets/scss/app.scss';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
@@ -12,13 +12,13 @@ import {
   ResultPage,
 } from 'components';
 
-const App = () => {
+const App: FC = () => {
   return (
     <div className='app'>
       <Sidebar />
       <Suspense fallback={<Loading />}>
         <Routes>
-          <Route exact path='/' element={<ParamsPage />} />
+          <Route path='/' element={<ParamsPage />} />
           <Route path='/room/:id' element={<RoomPage />} />
           <Route path='/toilet/:id' element={<ToiletPage />} />
           <Route path='/kitchen/:id' element={<KitchenPage />} />

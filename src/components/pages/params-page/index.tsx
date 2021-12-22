@@ -1,28 +1,31 @@
-import React, { useEffect, useRef } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 
 import { ImageCard, ParamsForm, RoomsForm } from 'components';
-import { Button, Grid } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import { cards } from 'data/imageCardsData';
 import { useGlobalContext } from 'context/context';
+import { IAppState } from 'interfaces';
 
-const ParamsPage = () => {
+const ParamsPage: FC = () => {
   const {
     newWalls,
     toggleNewWalls,
     params: { currentStep },
     setCurrentStep,
-  } = useGlobalContext();
-  const ref = useRef(null);
+  }: IAppState = useGlobalContext();
+  const ref = useRef<HTMLDivElement>(document.createElement('div'));
 
-  const centerContentToWindow = (ref) => {
-    const content = ref.current;
-    const contentSizes = content.getBoundingClientRect();
-    const margin = Math.floor(window.innerHeight / 2 - contentSizes.height / 2);
-    content.style.marginTop = `${margin}px`;
+  const centerContentToWindow = (node: HTMLDivElement) => {
+    if (!node) return;
+    const contentSizes: DOMRect = node.getBoundingClientRect();
+    const margin: number = Math.floor(
+      window.innerHeight / 2 - contentSizes.height / 2
+    );
+    node.style.marginTop = `${margin}px`;
   };
 
   useEffect(() => {
-    centerContentToWindow(ref);
+    centerContentToWindow(ref.current);
   }, [currentStep]);
 
   if (currentStep === 1) {
@@ -48,27 +51,18 @@ const ParamsPage = () => {
                 Оберіть стан стін на даний момент
               </p>
             </div>
-            <Grid
-              container
-              className='params-content'
-              component='div'
-              spacing={5}
-            >
-              <Grid item md={6}>
-                <ImageCard
-                  {...cards[0]}
-                  active={!newWalls}
-                  onChange={toggleNewWalls}
-                />
-              </Grid>
-              <Grid item md={6}>
-                <ImageCard
-                  {...cards[1]}
-                  active={newWalls}
-                  onChange={toggleNewWalls}
-                />
-              </Grid>
-            </Grid>
+            <div className='params-content'>
+              <ImageCard
+                {...cards[0]}
+                active={!newWalls}
+                onChange={toggleNewWalls}
+              />
+              <ImageCard
+                {...cards[1]}
+                active={newWalls}
+                onChange={toggleNewWalls}
+              />
+            </div>
             <div className='params-actions'>
               <Button
                 className='params-actions__btn params-actions__btn--rightImg'
@@ -93,17 +87,15 @@ const ParamsPage = () => {
     );
   }
 
-  if (currentStep === 3) {
-    return (
-      <div className='params' ref={ref}>
-        <div className='container'>
-          <div className='params-inner'>
-            <RoomsForm />
-          </div>
+  return (
+    <div className='params' ref={ref}>
+      <div className='container'>
+        <div className='params-inner'>
+          <RoomsForm />
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 };
 
 export default ParamsPage;

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import FormItem from './FormItem';
 import { useGlobalContext } from 'context/context';
 import { isAllAreaInputsValid } from 'utils/functions';
+import { IAppState, IObject } from 'interfaces';
 
 const RoomsForm = () => {
   const {
@@ -16,13 +17,13 @@ const RoomsForm = () => {
     setCurrentStep,
     setErrorInputs,
     resetErrorInputs,
-  } = useGlobalContext();
+  }: IAppState = useGlobalContext();
   const navigate = useNavigate();
-  const isAnyRoomSelected = rooms.reduce((acc, el) => {
+  const isAnyRoomSelected: number = rooms.reduce((acc: number, el: IObject) => {
     return acc + el?.items?.length;
   }, 0);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
     // if some rooms area inputs invalid
     if (!isAllAreaInputsValid(rooms)) {
@@ -34,7 +35,7 @@ const RoomsForm = () => {
     }
   };
 
-  const getFirstRoomPath = (rooms) => {
+  const getFirstRoomPath = (rooms: IObject[]) => {
     for (let room of rooms) {
       if (room?.items?.length) {
         return room.items[0].path;
@@ -63,7 +64,7 @@ const RoomsForm = () => {
       </div>
 
       <div className='rooms-form__body'>
-        {rooms.map((r, idx) => (
+        {rooms.map((r: IObject, idx: number) => (
           <FormItem
             key={idx}
             {...r}

@@ -1,8 +1,7 @@
-import React from 'react';
-
+import React, { FC } from 'react';
 import { ResultForm } from 'components';
 
-const ResultPage = () => {
+const ResultPage: FC = () => {
   return (
     <div className='result'>
       <div className='container'>
