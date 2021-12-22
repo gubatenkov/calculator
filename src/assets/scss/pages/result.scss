@@ -1,0 +1,62 @@
+.result {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &-paper {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 550px;
+    padding: 45px 50px;
+  }
+
+  &-form {
+    width: 100%;
+    margin: 0 auto;
+
+    .MuiFormHelperText-contained {
+      margin: 0 0 0 0 !important;
+      text-align: center;
+    }
+
+    &__title {
+      margin: 0 0 40px 0;
+
+      font-size: 24px;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    &__field {
+      & input {
+        padding: 11px;
+      }
+
+      & label {
+        font-size: 14px;
+        transform: translate(14px, 15px) scale(1);
+      }
+
+      & fieldset {
+        height: 45px;
+      }
+    }
+  }
+
+  &-form__btn {
+    display: block !important;
+    margin: 40px auto 0 !important;
+  }
+
+  .form-item {
+    height: 40px;
+  }
+
+  .form-item + .form-item {
+    margin: 20px 0 0 0;
+  }
+}

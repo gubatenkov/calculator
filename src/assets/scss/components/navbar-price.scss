@@ -1,0 +1,29 @@
+.navbar {
+  position: absolute;
+  left: 50%;
+  bottom: 30px;
+
+  transform: translateX(-50%);
+
+  &-paper {
+    display: flex;
+    padding: 15px 25px;
+
+    background: #3f51b5 !important;
+
+    &__title {
+      margin: 0 15px 0 0 !important;
+    }
+
+    &__title,
+    &__price {
+      margin: 0;
+
+      font-size: 18px;
+      color: #fff;
+      font-weight: 700;
+      line-height: 22px;
+      letter-spacing: 0.2px;
+    }
+  }
+}
